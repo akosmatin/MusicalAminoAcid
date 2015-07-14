@@ -1,10 +1,7 @@
 package AminoAcidChords
 
-import AminoAcidChords.ChordStructure.{Rhythm1, VoiceSus4}
+import AminoAcidChords.ChordStructure.ChordRoots.DMajor
+import AminoAcidChords.ChordStructure.Rhythms.Rhythm1
+import AminoAcidChords.ChordStructure.Voicings.VoiceSus4
 
-/**
- * Created by doccali on 7/12/15.
- */
-object G extends VoiceSus4 with Rhythm1 {
-  val root = note2root('d')
-}
+object G extends DMajor with VoiceSus4 with Rhythm1 {}

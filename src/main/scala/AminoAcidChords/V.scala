@@ -1,10 +1,7 @@
 package AminoAcidChords
 
-import AminoAcidChords.ChordStructure.{Rhythm1, Voice79}
+import AminoAcidChords.ChordStructure.ChordRoots.GMajor
+import AminoAcidChords.ChordStructure.Rhythms.Rhythm1
+import AminoAcidChords.ChordStructure.Voicings.Voice79
 
-/**
- * Created by doccali on 7/12/15.
- */
-object V extends Voice79 with Rhythm1 {
-  val root = note2root('g')
-}
+object V extends GMajor with Voice79 with Rhythm1 {}

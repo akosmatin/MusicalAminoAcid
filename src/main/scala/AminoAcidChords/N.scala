@@ -1,10 +1,7 @@
 package AminoAcidChords
 
-import AminoAcidChords.ChordStructure.{Rhythm1, noVoice}
+import AminoAcidChords.ChordStructure.ChordRoots.EMinor
+import AminoAcidChords.ChordStructure.Rhythms.Rhythm1
+import AminoAcidChords.ChordStructure.Voicings.VoiceNone
 
-/**
- * Created by doccali on 7/12/15.
- */
-object N extends noVoice with Rhythm1 {
-  val root = note2root('e')
-}
+object N extends EMinor with VoiceNone with Rhythm1 {}

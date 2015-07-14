@@ -1,13 +1,9 @@
 package AminoAcidChords.ChordStructure
 
-/**
- * Created by doccali on 7/12/15.
- */
-
-case class rhythmTuple(measureOffset:Int, duaration:Int)
+case class rhythmTuple(measureOffset: Int, duration: Int)
 
 trait Rhythm {
-  val rhythm:Seq[rhythmTuple]
-  val voiceRhythm:Seq[rhythmTuple]
-  val baseRhythm:Seq[rhythmTuple]
+  val rhythm: Seq[rhythmTuple]
+  val voiceRhythm: Seq[rhythmTuple]
+  val baseRhythm: Seq[rhythmTuple]
 }
