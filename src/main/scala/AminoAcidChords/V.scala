@@ -1,7 +1,11 @@
 package AminoAcidChords
 
-import AminoAcidChords.ChordStructure.ChordRoots.GMajor
-import AminoAcidChords.ChordStructure.Rhythms.Rhythm1
-import AminoAcidChords.ChordStructure.Voicings.Voice79
+import AminoAcidChords.SongStructure.Bass.Bass1
+import AminoAcidChords.SongStructure.ChordRoot.AMinor
+import AminoAcidChords.SongStructure.Drum.Drum1
+import AminoAcidChords.SongStructure.MeasureStructure
+import AminoAcidChords.SongStructure.Melody.Melody1
 
-object V extends GMajor with Voice79 with Rhythm1 {}
+object V extends AminoAcidAbstract {
+  val tracks = new MeasureStructure(AMinor, Bass1, Drum1, Melody1)
+}

@@ -7,16 +7,36 @@
 import java.io.File
 import javax.sound.midi._
 
-import AminoAcidChords.ChordStructure.ChordBuilder
+import AminoAcidChords.AminoAcidAbstract
+import AminoAcidChords.SongStructure.NoteDivision
 
-
-object Main extends App {
-  val measureLength = 3
-
-  val sequence = new Sequence(Sequence.PPQ, 1)
+object Main extends App with NoteDivision {
+  val measureLength = division*8
+  val sequence = new Sequence(Sequence.PPQ, division)
   val track = sequence.createTrack()
 
-  val testSeq = Seq('A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y')
+  val synth = MidiSystem.getSynthesizer
+  synth.open()
+
+  val inst = synth.getDefaultSoundbank.getInstruments
+
+
+  val Track0ToGuitar = new ShortMessage
+  Track0ToGuitar.setMessage(ShortMessage.PROGRAM_CHANGE, 0, inst(24).getPatch.getProgram, inst(24).getPatch.getBank)
+  track.add(new MidiEvent(Track0ToGuitar, 0))
+  val Track1ToBass = new ShortMessage
+  Track1ToBass.setMessage(ShortMessage.PROGRAM_CHANGE, 1, inst(33).getPatch.getProgram, inst(33).getPatch.getBank)
+  track.add(new MidiEvent(Track1ToBass, 0))
+  val Track2ToLead = new ShortMessage
+  Track2ToLead.setMessage(ShortMessage.PROGRAM_CHANGE, 2, inst(12).getPatch.getProgram, inst(12).getPatch.getBank)
+  track.add(new MidiEvent(Track2ToLead, 0))
+
+  for {i<-Range(0,inst.length)}{
+    println(i +" "+inst(i))
+  }
+
+
+  val testSeq = "YWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYW"
 
   val thyA = "MKQYLELMQKVLDEGTQKNDRTGTGTLSIFGHQMRFNLQDGFPLVTTKRCHLRSIIHELLWFLQGDTNIAYLHENNVTIWDEWADENGDLGPVYGKQWRAWPTPDGRHIDQITTVLNQLKNDPDSRRIIVSAWNVGELDKMALAPCHAFFQFYVADGKLSCQLYQRSCDVFLGLPFNIASYALLVHMMAQQCDLEVGDFVWTGGDTHLYSNHMDQTHLQLSREPRPLPKLIIKRKPESIFDYRFEDFEIEGYDPHPGIKAPVAI"
 
@@ -25,21 +45,27 @@ object Main extends App {
       val objectName = "AminoAcidChords." + thyA.charAt(i) + "$"
       val cons = Class.forName(objectName).getDeclaredConstructors
       cons(0).setAccessible(true)
-      cons(0).newInstance().asInstanceOf[ChordBuilder]
+      cons(0).newInstance().asInstanceOf[AminoAcidAbstract]
     }
-    for {n <- aminoAcid.notes
-         r <- aminoAcid.rhythm} {
-      track.add(createNoteOnEvent(n, measureLength * i + r.measureOffset + 1))
-      track.add(createNoteOffEvent(n, measureLength * i + r.measureOffset + r.duration + 1))
+    for {n <- aminoAcid.tracks.rhythmGuitarTrack} {
+      track.add(createNoteOnEvent(n.note, measureLength * i + n.measureOffset, 0, 60))
+      track.add(createNoteOffEvent(n.note, measureLength * i + n.measureOffset + n.duration, 0))
     }
-    for {n <- aminoAcid.voiceNotes
-         r <- aminoAcid.voiceRhythm} {
-      track.add(createNoteOnEvent(n, measureLength * i + r.measureOffset + 1))
-      track.add(createNoteOffEvent(n, measureLength * i + r.measureOffset + r.duration + 1))
+    for {n <- aminoAcid.tracks.drumTrack} {
+      if (n.note == 42) {
+        track.add(createNoteOnEvent(n.note, measureLength * i + n.measureOffset, 9, 60))
+      } else {
+        track.add(createNoteOnEvent(n.note, measureLength * i + n.measureOffset, 9, 120))
+      }
+      track.add(createNoteOffEvent(n.note, measureLength * i + n.measureOffset + n.duration, 9))
     }
-    for {r <- aminoAcid.baseRhythm} {
-      track.add(createNoteOnEvent(aminoAcid.notes(0) - 12, measureLength * i + r.measureOffset + 1))
-      track.add(createNoteOffEvent(aminoAcid.notes(0) - 12, measureLength * i + r.measureOffset + r.duration + 1))
+    for {n <- aminoAcid.tracks.bassTrack} {
+      track.add(createNoteOnEvent(n.note, measureLength * i + n.measureOffset, 1, 100))
+      track.add(createNoteOffEvent(n.note, measureLength * i + n.measureOffset + n.duration, 1))
+    }
+    for {n <- aminoAcid.tracks.melodyTrack} {
+      track.add(createNoteOnEvent(n.note, measureLength * i + n.measureOffset, 2, 50))
+      track.add(createNoteOffEvent(n.note, measureLength * i + n.measureOffset + n.duration, 2))
     }
   }
 
@@ -49,26 +75,26 @@ object Main extends App {
   val sequencer = MidiSystem.getSequencer
   sequencer.open()
   sequencer.setSequence(sequence)
-  val bpm: Float = 140
+  val bpm: Float = 220
   sequencer.setTempoInBPM(bpm)
   sequencer.start()
   Thread.sleep(sequencer.getMicrosecondLength / 1000)
   sequencer.stop()
   sequencer.close()
 
-  def createNoteOnEvent(nKey: Int, lTick: Long): MidiEvent = {
-    createNoteEvent(ShortMessage.NOTE_ON, nKey, 64, lTick)
+  def createNoteOnEvent(nKey: Int, lTick: Long, track:Int, velocity:Int): MidiEvent = {
+    createNoteEvent(ShortMessage.NOTE_ON, nKey, velocity, lTick, track)
   }
 
-  def createNoteOffEvent(nKey: Int, lTick: Long): MidiEvent = {
-    createNoteEvent(ShortMessage.NOTE_OFF, nKey, 0, lTick)
+  def createNoteOffEvent(nKey: Int, lTick: Long, track:Int, velocity:Int=0): MidiEvent = {
+    createNoteEvent(ShortMessage.NOTE_OFF, nKey, velocity, lTick,track)
   }
 
-  def createNoteEvent(nCommand: Int, nKey: Int, nVelocity: Int, lTick: Long): MidiEvent = {
+  def createNoteEvent(nCommand: Int, nKey: Int, nVelocity: Int, lTick: Long, track:Int): MidiEvent = {
     val message = new ShortMessage()
     try {
       message.setMessage(nCommand,
-        0,
+        track,
         nKey,
         nVelocity)
     }
