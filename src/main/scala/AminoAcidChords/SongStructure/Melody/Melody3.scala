@@ -3,8 +3,16 @@ package AminoAcidChords.SongStructure.Melody
 import AminoAcidChords.SongStructure.rhythmTuple
 
 object Melody3 extends Melody{
-  val notes = Seq(83,79,74,76)
-  val melodyTrack = for (i <- Range(0,4)) yield {
-    rhythmTuple(i*2*division,2*division,notes(i))
+  val notes = Seq(
+    (83, one),
+    (79, two),
+    (74, three),
+    (76,four)
+  )
+
+  def melodyTrack(measureOffset:Int) = {
+    for(n<-notes) {
+      mc.addNote(trackNumber,n._1,velocity,measureOffset+n._2, quarter)
+    }
   }
 }

@@ -3,7 +3,20 @@ package AminoAcidChords.SongStructure.Drum
 import AminoAcidChords.SongStructure.rhythmTuple
 
 object Drum3 extends Drum {
-  val drumTrack = (for(i <- Range(0,8)) yield {
-    rhythmTuple(i*division, division, 42)
-  }) ++ Seq(rhythmTuple(0, division, 35), rhythmTuple(2*division, division, 35), rhythmTuple(4*division, division, 35), rhythmTuple(6*division, division, 35))
-}
+  def drumTrack(measureOffset:Int) = {
+    Seq(
+      (42, 60, one, eighth),
+      (42, 60, oneAnd, eighth),
+      (42, 60, two, eighth),
+      (42, 60, twoAnd, eighth),
+      (42, 60, three, eighth),
+      (42, 60, threeAnd, eighth),
+      (42, 60, four, eighth),
+      (42, 60, fourAnd, eighth),
+
+      (35, 120, one, quarter),
+      (35, 120, two, quarter),
+      (35, 120, three, quarter),
+      (35, 120, four, quarter)
+    ) foreach(n => mc.addNote(trackNumber, n._1, n._2, measureOffset + n._3, n._4))
+  }}

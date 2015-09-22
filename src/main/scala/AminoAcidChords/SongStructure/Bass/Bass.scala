@@ -1,8 +1,10 @@
 package AminoAcidChords.SongStructure.Bass
 
-import AminoAcidChords.SongStructure.ChordRoot.Chord
-import AminoAcidChords.SongStructure.{NoteDivision, rhythmTuple}
+import AminoAcidChords.SongStructure.MusicCommon
 
-trait Bass extends NoteDivision{
-  def bassTrack(rootNote:Int,offset:Int): Seq[rhythmTuple]
+trait Bass extends MusicCommon{
+  mc.changeInstrument(1, 33)
+  val trackNumber = 1
+  val velocity = 100
+  def bassTrack(rootNote:Int, measureOffset:Int, firstChord: Boolean): Unit
 }

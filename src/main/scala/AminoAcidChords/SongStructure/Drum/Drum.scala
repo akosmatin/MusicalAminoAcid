@@ -1,6 +1,8 @@
 package AminoAcidChords.SongStructure.Drum
 
-import AminoAcidChords.SongStructure.{NoteDivision, rhythmTuple}
-trait Drum extends NoteDivision{
-  val drumTrack: Seq[rhythmTuple]
+import AminoAcidChords.SongStructure.MusicCommon
+
+trait Drum extends MusicCommon{
+  val trackNumber = 9
+  def drumTrack(measureOffset:Int): Unit
 }

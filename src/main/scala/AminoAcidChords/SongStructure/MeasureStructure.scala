@@ -4,11 +4,16 @@ import AminoAcidChords.SongStructure.Bass.Bass
 import AminoAcidChords.SongStructure.ChordRoot.Chord
 import AminoAcidChords.SongStructure.Drum.Drum
 import AminoAcidChords.SongStructure.Melody.Melody
-import AminoAcidChords.SongStructure.RhythmGuitar.RhythmGuitar
 
-class MeasureStructure(c:Chord,b:Bass,d:Drum,m:Melody) extends RhythmGuitar with NoteDivision{
-  val bassTrack = b.bassTrack(c.rootNotes._1, 0) ++ b.bassTrack(c.rootNotes._2, division*4)
-  val rhythmGuitarTrack: Seq[rhythmTuple] = rhythmGuitarTrack(c.rootNotes._1, 0) ++ rhythmGuitarTrack(c.rootNotes._2, division * 4)
-  val drumTrack = d.drumTrack
-  val melodyTrack = m.melodyTrack
+class MeasureStructure(c:Chord,b:Bass,d:Drum,m:Melody) extends MusicCommon {
+  val rg = RhythmGuitar.RhythmGuitar
+
+  def addTrack(measureOffset:Int) = {
+    d.drumTrack(measureOffset)
+    rg.addTrack(c.rootNotes._1, measureOffset, true)
+    rg.addTrack(c.rootNotes._2, measureOffset, false)
+    b.bassTrack(c.rootNotes._1, measureOffset, true)
+    b.bassTrack(c.rootNotes._2, measureOffset, false)
+    m.melodyTrack(measureOffset)
+  }
 }
