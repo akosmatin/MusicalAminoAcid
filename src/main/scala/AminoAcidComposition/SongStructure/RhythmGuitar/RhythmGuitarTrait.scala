@@ -16,7 +16,7 @@ trait RhythmGuitarTrait extends Instrument with MusicCommon {
   protected val gMajor = Seq(43, 47, 50, 55, 62, 67)
 
   protected def downStrokeCurry(chord: Seq[Int])(start: Int, duration: Int, velocity: Int) = {
-    for (i <- Range(0, chord.length)) yield {
+    for (i <- chord.indices) yield {
       if (i == chord.length - 1) {
         (start + i, duration - i, chord(i), (velocity * 1.1).toInt)
       } else {
@@ -26,7 +26,7 @@ trait RhythmGuitarTrait extends Instrument with MusicCommon {
   }
 
   protected def upStrokeCurry(chord: Seq[Int])(start: Int, duration: Int, velocity: Int) = {
-    for (i <- Range(0, chord.length)) yield {
+    for (i <- chord.indices) yield {
       if (i == 0) {
         (start + i, duration, chord(chord.length - 1 - i), (velocity * 1.1).toInt)
       } else {

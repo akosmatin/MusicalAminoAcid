@@ -1,6 +1,5 @@
 package AminoAcidComposition.AminoAcid
 
-import AminoAcidComposition.AminoAcid.AminoAcidAbstract
 import AminoAcidComposition.SongStructure.Bass.Bass2
 import AminoAcidComposition.SongStructure.ChordRoot.AMinor
 import AminoAcidComposition.SongStructure.Drum.Drum3
