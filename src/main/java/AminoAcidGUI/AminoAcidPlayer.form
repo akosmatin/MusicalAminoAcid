@@ -1,0 +1,1436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="AminoAcidGUI.AminoAcidPlayer">
+  <grid id="27dc6" binding="aminoAcidPlayerPanel" layout-manager="GridLayoutManager" row-count="9" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="1" y="3" width="1614" height="1030"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="6846d" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="First Amino Acid: "/>
+        </properties>
+      </component>
+      <component id="32422" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Second Amino Acid: "/>
+        </properties>
+      </component>
+      <component id="d38d1" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Melody: "/>
+        </properties>
+      </component>
+      <vspacer id="af37a">
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="7de2e" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Rhythm Guitar: "/>
+        </properties>
+      </component>
+      <component id="b019d" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Bass Guitar: "/>
+        </properties>
+      </component>
+      <component id="8534e" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Drum: "/>
+        </properties>
+      </component>
+      <component id="23cb0" class="javax.swing.JToggleButton" binding="SecondRhythmMuteButton">
+        <constraints>
+          <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Mute"/>
+        </properties>
+      </component>
+      <component id="c13bd" class="javax.swing.JToggleButton" binding="SecondRhythmSoloButton">
+        <constraints>
+          <grid row="5" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Solo"/>
+        </properties>
+      </component>
+      <component id="a5c37" class="javax.swing.JComboBox" binding="SecondRhythmDropDown">
+        <constraints>
+          <grid row="5" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model>
+            <item value="Yamaha Grand Piano"/>
+            <item value="Bright Yamaha Grand"/>
+            <item value="Electric Piano"/>
+            <item value="Honky Tonk"/>
+            <item value="Rhodes EP"/>
+            <item value="Legend EP 2"/>
+            <item value="Harpsichord"/>
+            <item value="Clavinet"/>
+            <item value="Celesta"/>
+            <item value="Glockenspiel"/>
+            <item value="Music Box"/>
+            <item value="Vibraphone"/>
+            <item value="Marimba"/>
+            <item value="Xylophone"/>
+            <item value="Tubular Bells"/>
+            <item value="Dulcimer"/>
+            <item value="DrawbarOrgan"/>
+            <item value="Percussive Organ"/>
+            <item value="Rock Organ"/>
+            <item value="Church Organ"/>
+            <item value="Reed Organ"/>
+            <item value="Accordian"/>
+            <item value="Harmonica"/>
+            <item value="Bandoneon"/>
+            <item value="Nylon String Guitar"/>
+            <item value="Steel String Guitar"/>
+            <item value="Jazz Guitar"/>
+            <item value="Clean Guitar"/>
+            <item value="Palm Muted Guitar"/>
+            <item value="Overdrive Guitar"/>
+            <item value="Distortion Guitar"/>
+            <item value="Guitar Harmonics"/>
+            <item value="Acoustic Bass"/>
+            <item value="Fingered Bass"/>
+            <item value="Picked Bass"/>
+            <item value="Fretless Bass"/>
+            <item value="Slap Bass"/>
+            <item value="Pop Bass"/>
+            <item value="Synth Bass 1"/>
+            <item value="Synth Bass 2"/>
+            <item value="Violin"/>
+            <item value="Viola"/>
+            <item value="Cello"/>
+            <item value="Contrabass"/>
+            <item value="Tremolo"/>
+            <item value="Pizzicato Section"/>
+            <item value="Harp"/>
+            <item value="Timpani"/>
+            <item value="Strings"/>
+            <item value="Slow Strings"/>
+            <item value="Synth Strings 1"/>
+            <item value="Synth Strings 2"/>
+            <item value="Ahh Choir"/>
+            <item value="Ohh Voices"/>
+            <item value="Synth Voice"/>
+            <item value="Orchestra Hit"/>
+            <item value="Trumpet"/>
+            <item value="Trombone"/>
+            <item value="Tuba"/>
+            <item value="Muted Trumpet"/>
+            <item value="French Horns"/>
+            <item value="Brass Section"/>
+            <item value="Synth Brass 1"/>
+            <item value="Synth Brass 2"/>
+            <item value="Soprano Sax"/>
+            <item value="Alto Sax"/>
+            <item value="Tenor Sax"/>
+            <item value="Baritone Sax"/>
+            <item value="Oboe"/>
+            <item value="English Horn"/>
+            <item value="Bassoon"/>
+            <item value="Clarinet"/>
+            <item value="Piccolo"/>
+            <item value="Flute"/>
+            <item value="Recorder"/>
+            <item value="Pan Flute"/>
+            <item value="Bottle Chiff"/>
+            <item value="Shakuhachi"/>
+            <item value="Whistle"/>
+            <item value="Ocarina"/>
+            <item value="Square Lead"/>
+            <item value="Saw Wave"/>
+            <item value="Calliope Lead"/>
+            <item value="Chiffer Lead"/>
+            <item value="Charang"/>
+            <item value="Solo Vox"/>
+            <item value="Fifth Sawtooth Wave"/>
+            <item value="Bass &amp; Lead"/>
+            <item value="Fantasia"/>
+            <item value="Warm Pad"/>
+            <item value="Polysynth"/>
+            <item value="Space Voice"/>
+            <item value="Bowed Glass"/>
+            <item value="Metal Pad"/>
+            <item value="Halo Pad"/>
+            <item value="Sweep Pad"/>
+            <item value="Ice Rain"/>
+            <item value="Soundtrack"/>
+            <item value="Crystal"/>
+            <item value="Atmosphere"/>
+            <item value="Brightness"/>
+            <item value="Goblin"/>
+            <item value="Echo Drops"/>
+            <item value="Star Theme"/>
+            <item value="Sitar"/>
+            <item value="Banjo"/>
+            <item value="Shamisen"/>
+            <item value="Koto"/>
+            <item value="Kalimba"/>
+            <item value="BagPipe"/>
+            <item value="Fiddle"/>
+            <item value="Shenai"/>
+            <item value="Tinker Bell"/>
+            <item value="Agogo"/>
+            <item value="Steel Drums"/>
+            <item value="Woodblock"/>
+            <item value="Taiko Drum"/>
+            <item value="Melodic Tom"/>
+            <item value="Synth Drum"/>
+            <item value="Reverse Cymbal"/>
+            <item value="Fret Noise"/>
+            <item value="Breath Noise"/>
+            <item value="Sea Shore"/>
+            <item value="Bird Tweet"/>
+            <item value="Telephone"/>
+            <item value="Helicopter"/>
+            <item value="Applause"/>
+            <item value="Gun Shot"/>
+            <item value="Detuned EP 1"/>
+            <item value="Detuned EP 2"/>
+            <item value="Coupled Harpsichord"/>
+            <item value="Church Bell"/>
+            <item value="Detuned Organ 1"/>
+            <item value="Detuned Organ 2"/>
+            <item value="Church Organ 2"/>
+            <item value="Italian Accordion"/>
+            <item value="Ukulele"/>
+            <item value="12 String Guitar"/>
+            <item value="Hawaiian Guitar"/>
+            <item value="Funk Guitar"/>
+            <item value="Feedback Guitar"/>
+            <item value="Guitar Feedback"/>
+            <item value="Synth Bass 3"/>
+            <item value="Synth Bass 4"/>
+            <item value="Slow Violin"/>
+            <item value="Orchestral Pad"/>
+            <item value="Synth Strings 3"/>
+            <item value="Brass 2"/>
+            <item value="Synth Brass 3"/>
+            <item value="Synth Brass 4"/>
+            <item value="Sine Wave"/>
+            <item value="Taisho Koto"/>
+            <item value="Castanets"/>
+            <item value="Concert Bass Drum"/>
+            <item value="Melo Tom 2"/>
+            <item value="808 Tom"/>
+            <item value="Burst Noise"/>
+            <item value="Mandolin"/>
+            <item value="Standard"/>
+            <item value="Standard 1"/>
+            <item value="Standard 2"/>
+            <item value="Standard 3"/>
+            <item value="Standard 4"/>
+            <item value="Standard 5"/>
+            <item value="Standard 6"/>
+            <item value="Standard 7"/>
+            <item value="Room"/>
+            <item value="Room 1"/>
+            <item value="Room 2"/>
+            <item value="Room 3"/>
+            <item value="Room 4"/>
+            <item value="Room 5"/>
+            <item value="Room 6"/>
+            <item value="Room 7"/>
+            <item value="Power"/>
+            <item value="Power 1"/>
+            <item value="Power 2"/>
+            <item value="Power 3"/>
+            <item value="Electronic"/>
+            <item value="TR-808"/>
+            <item value="Jazz"/>
+            <item value="Jazz 1"/>
+            <item value="Jazz 2"/>
+            <item value="Jazz 3"/>
+            <item value="Jazz 4"/>
+            <item value="Brush"/>
+            <item value="Brush 1"/>
+            <item value="Brush 2"/>
+            <item value="Orchestra Kit"/>
+          </model>
+        </properties>
+      </component>
+      <component id="ea9eb" class="javax.swing.JComboBox" binding="FirstRhythmDropDown">
+        <constraints>
+          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model>
+            <item value="Yamaha Grand Piano"/>
+            <item value="Bright Yamaha Grand"/>
+            <item value="Electric Piano"/>
+            <item value="Honky Tonk"/>
+            <item value="Rhodes EP"/>
+            <item value="Legend EP 2"/>
+            <item value="Harpsichord"/>
+            <item value="Clavinet"/>
+            <item value="Celesta"/>
+            <item value="Glockenspiel"/>
+            <item value="Music Box"/>
+            <item value="Vibraphone"/>
+            <item value="Marimba"/>
+            <item value="Xylophone"/>
+            <item value="Tubular Bells"/>
+            <item value="Dulcimer"/>
+            <item value="DrawbarOrgan"/>
+            <item value="Percussive Organ"/>
+            <item value="Rock Organ"/>
+            <item value="Church Organ"/>
+            <item value="Reed Organ"/>
+            <item value="Accordian"/>
+            <item value="Harmonica"/>
+            <item value="Bandoneon"/>
+            <item value="Nylon String Guitar"/>
+            <item value="Steel String Guitar"/>
+            <item value="Jazz Guitar"/>
+            <item value="Clean Guitar"/>
+            <item value="Palm Muted Guitar"/>
+            <item value="Overdrive Guitar"/>
+            <item value="Distortion Guitar"/>
+            <item value="Guitar Harmonics"/>
+            <item value="Acoustic Bass"/>
+            <item value="Fingered Bass"/>
+            <item value="Picked Bass"/>
+            <item value="Fretless Bass"/>
+            <item value="Slap Bass"/>
+            <item value="Pop Bass"/>
+            <item value="Synth Bass 1"/>
+            <item value="Synth Bass 2"/>
+            <item value="Violin"/>
+            <item value="Viola"/>
+            <item value="Cello"/>
+            <item value="Contrabass"/>
+            <item value="Tremolo"/>
+            <item value="Pizzicato Section"/>
+            <item value="Harp"/>
+            <item value="Timpani"/>
+            <item value="Strings"/>
+            <item value="Slow Strings"/>
+            <item value="Synth Strings 1"/>
+            <item value="Synth Strings 2"/>
+            <item value="Ahh Choir"/>
+            <item value="Ohh Voices"/>
+            <item value="Synth Voice"/>
+            <item value="Orchestra Hit"/>
+            <item value="Trumpet"/>
+            <item value="Trombone"/>
+            <item value="Tuba"/>
+            <item value="Muted Trumpet"/>
+            <item value="French Horns"/>
+            <item value="Brass Section"/>
+            <item value="Synth Brass 1"/>
+            <item value="Synth Brass 2"/>
+            <item value="Soprano Sax"/>
+            <item value="Alto Sax"/>
+            <item value="Tenor Sax"/>
+            <item value="Baritone Sax"/>
+            <item value="Oboe"/>
+            <item value="English Horn"/>
+            <item value="Bassoon"/>
+            <item value="Clarinet"/>
+            <item value="Piccolo"/>
+            <item value="Flute"/>
+            <item value="Recorder"/>
+            <item value="Pan Flute"/>
+            <item value="Bottle Chiff"/>
+            <item value="Shakuhachi"/>
+            <item value="Whistle"/>
+            <item value="Ocarina"/>
+            <item value="Square Lead"/>
+            <item value="Saw Wave"/>
+            <item value="Calliope Lead"/>
+            <item value="Chiffer Lead"/>
+            <item value="Charang"/>
+            <item value="Solo Vox"/>
+            <item value="Fifth Sawtooth Wave"/>
+            <item value="Bass &amp; Lead"/>
+            <item value="Fantasia"/>
+            <item value="Warm Pad"/>
+            <item value="Polysynth"/>
+            <item value="Space Voice"/>
+            <item value="Bowed Glass"/>
+            <item value="Metal Pad"/>
+            <item value="Halo Pad"/>
+            <item value="Sweep Pad"/>
+            <item value="Ice Rain"/>
+            <item value="Soundtrack"/>
+            <item value="Crystal"/>
+            <item value="Atmosphere"/>
+            <item value="Brightness"/>
+            <item value="Goblin"/>
+            <item value="Echo Drops"/>
+            <item value="Star Theme"/>
+            <item value="Sitar"/>
+            <item value="Banjo"/>
+            <item value="Shamisen"/>
+            <item value="Koto"/>
+            <item value="Kalimba"/>
+            <item value="BagPipe"/>
+            <item value="Fiddle"/>
+            <item value="Shenai"/>
+            <item value="Tinker Bell"/>
+            <item value="Agogo"/>
+            <item value="Steel Drums"/>
+            <item value="Woodblock"/>
+            <item value="Taiko Drum"/>
+            <item value="Melodic Tom"/>
+            <item value="Synth Drum"/>
+            <item value="Reverse Cymbal"/>
+            <item value="Fret Noise"/>
+            <item value="Breath Noise"/>
+            <item value="Sea Shore"/>
+            <item value="Bird Tweet"/>
+            <item value="Telephone"/>
+            <item value="Helicopter"/>
+            <item value="Applause"/>
+            <item value="Gun Shot"/>
+            <item value="Detuned EP 1"/>
+            <item value="Detuned EP 2"/>
+            <item value="Coupled Harpsichord"/>
+            <item value="Church Bell"/>
+            <item value="Detuned Organ 1"/>
+            <item value="Detuned Organ 2"/>
+            <item value="Church Organ 2"/>
+            <item value="Italian Accordion"/>
+            <item value="Ukulele"/>
+            <item value="12 String Guitar"/>
+            <item value="Hawaiian Guitar"/>
+            <item value="Funk Guitar"/>
+            <item value="Feedback Guitar"/>
+            <item value="Guitar Feedback"/>
+            <item value="Synth Bass 3"/>
+            <item value="Synth Bass 4"/>
+            <item value="Slow Violin"/>
+            <item value="Orchestral Pad"/>
+            <item value="Synth Strings 3"/>
+            <item value="Brass 2"/>
+            <item value="Synth Brass 3"/>
+            <item value="Synth Brass 4"/>
+            <item value="Sine Wave"/>
+            <item value="Taisho Koto"/>
+            <item value="Castanets"/>
+            <item value="Concert Bass Drum"/>
+            <item value="Melo Tom 2"/>
+            <item value="808 Tom"/>
+            <item value="Burst Noise"/>
+            <item value="Mandolin"/>
+            <item value="Standard"/>
+            <item value="Standard 1"/>
+            <item value="Standard 2"/>
+            <item value="Standard 3"/>
+            <item value="Standard 4"/>
+            <item value="Standard 5"/>
+            <item value="Standard 6"/>
+            <item value="Standard 7"/>
+            <item value="Room"/>
+            <item value="Room 1"/>
+            <item value="Room 2"/>
+            <item value="Room 3"/>
+            <item value="Room 4"/>
+            <item value="Room 5"/>
+            <item value="Room 6"/>
+            <item value="Room 7"/>
+            <item value="Power"/>
+            <item value="Power 1"/>
+            <item value="Power 2"/>
+            <item value="Power 3"/>
+            <item value="Electronic"/>
+            <item value="TR-808"/>
+            <item value="Jazz"/>
+            <item value="Jazz 1"/>
+            <item value="Jazz 2"/>
+            <item value="Jazz 3"/>
+            <item value="Jazz 4"/>
+            <item value="Brush"/>
+            <item value="Brush 1"/>
+            <item value="Brush 2"/>
+            <item value="Orchestra Kit"/>
+          </model>
+        </properties>
+      </component>
+      <component id="95e9e" class="javax.swing.JToggleButton" binding="FirstRhythmSoloButton">
+        <constraints>
+          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Solo"/>
+        </properties>
+      </component>
+      <component id="5fc65" class="javax.swing.JToggleButton" binding="FirstRhythmMuteButton">
+        <constraints>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Mute"/>
+        </properties>
+      </component>
+      <component id="24c29" class="javax.swing.JToggleButton" binding="SecondMelodyMuteButton">
+        <constraints>
+          <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Mute"/>
+        </properties>
+      </component>
+      <component id="a0358" class="javax.swing.JToggleButton" binding="SecondMelodySoloButton">
+        <constraints>
+          <grid row="4" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Solo"/>
+        </properties>
+      </component>
+      <component id="f6062" class="javax.swing.JComboBox" binding="SecondMelodyDropDown">
+        <constraints>
+          <grid row="4" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model>
+            <item value="Yamaha Grand Piano"/>
+            <item value="Bright Yamaha Grand"/>
+            <item value="Electric Piano"/>
+            <item value="Honky Tonk"/>
+            <item value="Rhodes EP"/>
+            <item value="Legend EP 2"/>
+            <item value="Harpsichord"/>
+            <item value="Clavinet"/>
+            <item value="Celesta"/>
+            <item value="Glockenspiel"/>
+            <item value="Music Box"/>
+            <item value="Vibraphone"/>
+            <item value="Marimba"/>
+            <item value="Xylophone"/>
+            <item value="Tubular Bells"/>
+            <item value="Dulcimer"/>
+            <item value="DrawbarOrgan"/>
+            <item value="Percussive Organ"/>
+            <item value="Rock Organ"/>
+            <item value="Church Organ"/>
+            <item value="Reed Organ"/>
+            <item value="Accordian"/>
+            <item value="Harmonica"/>
+            <item value="Bandoneon"/>
+            <item value="Nylon String Guitar"/>
+            <item value="Steel String Guitar"/>
+            <item value="Jazz Guitar"/>
+            <item value="Clean Guitar"/>
+            <item value="Palm Muted Guitar"/>
+            <item value="Overdrive Guitar"/>
+            <item value="Distortion Guitar"/>
+            <item value="Guitar Harmonics"/>
+            <item value="Acoustic Bass"/>
+            <item value="Fingered Bass"/>
+            <item value="Picked Bass"/>
+            <item value="Fretless Bass"/>
+            <item value="Slap Bass"/>
+            <item value="Pop Bass"/>
+            <item value="Synth Bass 1"/>
+            <item value="Synth Bass 2"/>
+            <item value="Violin"/>
+            <item value="Viola"/>
+            <item value="Cello"/>
+            <item value="Contrabass"/>
+            <item value="Tremolo"/>
+            <item value="Pizzicato Section"/>
+            <item value="Harp"/>
+            <item value="Timpani"/>
+            <item value="Strings"/>
+            <item value="Slow Strings"/>
+            <item value="Synth Strings 1"/>
+            <item value="Synth Strings 2"/>
+            <item value="Ahh Choir"/>
+            <item value="Ohh Voices"/>
+            <item value="Synth Voice"/>
+            <item value="Orchestra Hit"/>
+            <item value="Trumpet"/>
+            <item value="Trombone"/>
+            <item value="Tuba"/>
+            <item value="Muted Trumpet"/>
+            <item value="French Horns"/>
+            <item value="Brass Section"/>
+            <item value="Synth Brass 1"/>
+            <item value="Synth Brass 2"/>
+            <item value="Soprano Sax"/>
+            <item value="Alto Sax"/>
+            <item value="Tenor Sax"/>
+            <item value="Baritone Sax"/>
+            <item value="Oboe"/>
+            <item value="English Horn"/>
+            <item value="Bassoon"/>
+            <item value="Clarinet"/>
+            <item value="Piccolo"/>
+            <item value="Flute"/>
+            <item value="Recorder"/>
+            <item value="Pan Flute"/>
+            <item value="Bottle Chiff"/>
+            <item value="Shakuhachi"/>
+            <item value="Whistle"/>
+            <item value="Ocarina"/>
+            <item value="Square Lead"/>
+            <item value="Saw Wave"/>
+            <item value="Calliope Lead"/>
+            <item value="Chiffer Lead"/>
+            <item value="Charang"/>
+            <item value="Solo Vox"/>
+            <item value="Fifth Sawtooth Wave"/>
+            <item value="Bass &amp; Lead"/>
+            <item value="Fantasia"/>
+            <item value="Warm Pad"/>
+            <item value="Polysynth"/>
+            <item value="Space Voice"/>
+            <item value="Bowed Glass"/>
+            <item value="Metal Pad"/>
+            <item value="Halo Pad"/>
+            <item value="Sweep Pad"/>
+            <item value="Ice Rain"/>
+            <item value="Soundtrack"/>
+            <item value="Crystal"/>
+            <item value="Atmosphere"/>
+            <item value="Brightness"/>
+            <item value="Goblin"/>
+            <item value="Echo Drops"/>
+            <item value="Star Theme"/>
+            <item value="Sitar"/>
+            <item value="Banjo"/>
+            <item value="Shamisen"/>
+            <item value="Koto"/>
+            <item value="Kalimba"/>
+            <item value="BagPipe"/>
+            <item value="Fiddle"/>
+            <item value="Shenai"/>
+            <item value="Tinker Bell"/>
+            <item value="Agogo"/>
+            <item value="Steel Drums"/>
+            <item value="Woodblock"/>
+            <item value="Taiko Drum"/>
+            <item value="Melodic Tom"/>
+            <item value="Synth Drum"/>
+            <item value="Reverse Cymbal"/>
+            <item value="Fret Noise"/>
+            <item value="Breath Noise"/>
+            <item value="Sea Shore"/>
+            <item value="Bird Tweet"/>
+            <item value="Telephone"/>
+            <item value="Helicopter"/>
+            <item value="Applause"/>
+            <item value="Gun Shot"/>
+            <item value="Detuned EP 1"/>
+            <item value="Detuned EP 2"/>
+            <item value="Coupled Harpsichord"/>
+            <item value="Church Bell"/>
+            <item value="Detuned Organ 1"/>
+            <item value="Detuned Organ 2"/>
+            <item value="Church Organ 2"/>
+            <item value="Italian Accordion"/>
+            <item value="Ukulele"/>
+            <item value="12 String Guitar"/>
+            <item value="Hawaiian Guitar"/>
+            <item value="Funk Guitar"/>
+            <item value="Feedback Guitar"/>
+            <item value="Guitar Feedback"/>
+            <item value="Synth Bass 3"/>
+            <item value="Synth Bass 4"/>
+            <item value="Slow Violin"/>
+            <item value="Orchestral Pad"/>
+            <item value="Synth Strings 3"/>
+            <item value="Brass 2"/>
+            <item value="Synth Brass 3"/>
+            <item value="Synth Brass 4"/>
+            <item value="Sine Wave"/>
+            <item value="Taisho Koto"/>
+            <item value="Castanets"/>
+            <item value="Concert Bass Drum"/>
+            <item value="Melo Tom 2"/>
+            <item value="808 Tom"/>
+            <item value="Burst Noise"/>
+            <item value="Mandolin"/>
+            <item value="Standard"/>
+            <item value="Standard 1"/>
+            <item value="Standard 2"/>
+            <item value="Standard 3"/>
+            <item value="Standard 4"/>
+            <item value="Standard 5"/>
+            <item value="Standard 6"/>
+            <item value="Standard 7"/>
+            <item value="Room"/>
+            <item value="Room 1"/>
+            <item value="Room 2"/>
+            <item value="Room 3"/>
+            <item value="Room 4"/>
+            <item value="Room 5"/>
+            <item value="Room 6"/>
+            <item value="Room 7"/>
+            <item value="Power"/>
+            <item value="Power 1"/>
+            <item value="Power 2"/>
+            <item value="Power 3"/>
+            <item value="Electronic"/>
+            <item value="TR-808"/>
+            <item value="Jazz"/>
+            <item value="Jazz 1"/>
+            <item value="Jazz 2"/>
+            <item value="Jazz 3"/>
+            <item value="Jazz 4"/>
+            <item value="Brush"/>
+            <item value="Brush 1"/>
+            <item value="Brush 2"/>
+            <item value="Orchestra Kit"/>
+          </model>
+        </properties>
+      </component>
+      <component id="7a882" class="javax.swing.JComboBox" binding="FirstMelodyDropDown">
+        <constraints>
+          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model>
+            <item value="Yamaha Grand Piano"/>
+            <item value="Bright Yamaha Grand"/>
+            <item value="Electric Piano"/>
+            <item value="Honky Tonk"/>
+            <item value="Rhodes EP"/>
+            <item value="Legend EP 2"/>
+            <item value="Harpsichord"/>
+            <item value="Clavinet"/>
+            <item value="Celesta"/>
+            <item value="Glockenspiel"/>
+            <item value="Music Box"/>
+            <item value="Vibraphone"/>
+            <item value="Marimba"/>
+            <item value="Xylophone"/>
+            <item value="Tubular Bells"/>
+            <item value="Dulcimer"/>
+            <item value="DrawbarOrgan"/>
+            <item value="Percussive Organ"/>
+            <item value="Rock Organ"/>
+            <item value="Church Organ"/>
+            <item value="Reed Organ"/>
+            <item value="Accordian"/>
+            <item value="Harmonica"/>
+            <item value="Bandoneon"/>
+            <item value="Nylon String Guitar"/>
+            <item value="Steel String Guitar"/>
+            <item value="Jazz Guitar"/>
+            <item value="Clean Guitar"/>
+            <item value="Palm Muted Guitar"/>
+            <item value="Overdrive Guitar"/>
+            <item value="Distortion Guitar"/>
+            <item value="Guitar Harmonics"/>
+            <item value="Acoustic Bass"/>
+            <item value="Fingered Bass"/>
+            <item value="Picked Bass"/>
+            <item value="Fretless Bass"/>
+            <item value="Slap Bass"/>
+            <item value="Pop Bass"/>
+            <item value="Synth Bass 1"/>
+            <item value="Synth Bass 2"/>
+            <item value="Violin"/>
+            <item value="Viola"/>
+            <item value="Cello"/>
+            <item value="Contrabass"/>
+            <item value="Tremolo"/>
+            <item value="Pizzicato Section"/>
+            <item value="Harp"/>
+            <item value="Timpani"/>
+            <item value="Strings"/>
+            <item value="Slow Strings"/>
+            <item value="Synth Strings 1"/>
+            <item value="Synth Strings 2"/>
+            <item value="Ahh Choir"/>
+            <item value="Ohh Voices"/>
+            <item value="Synth Voice"/>
+            <item value="Orchestra Hit"/>
+            <item value="Trumpet"/>
+            <item value="Trombone"/>
+            <item value="Tuba"/>
+            <item value="Muted Trumpet"/>
+            <item value="French Horns"/>
+            <item value="Brass Section"/>
+            <item value="Synth Brass 1"/>
+            <item value="Synth Brass 2"/>
+            <item value="Soprano Sax"/>
+            <item value="Alto Sax"/>
+            <item value="Tenor Sax"/>
+            <item value="Baritone Sax"/>
+            <item value="Oboe"/>
+            <item value="English Horn"/>
+            <item value="Bassoon"/>
+            <item value="Clarinet"/>
+            <item value="Piccolo"/>
+            <item value="Flute"/>
+            <item value="Recorder"/>
+            <item value="Pan Flute"/>
+            <item value="Bottle Chiff"/>
+            <item value="Shakuhachi"/>
+            <item value="Whistle"/>
+            <item value="Ocarina"/>
+            <item value="Square Lead"/>
+            <item value="Saw Wave"/>
+            <item value="Calliope Lead"/>
+            <item value="Chiffer Lead"/>
+            <item value="Charang"/>
+            <item value="Solo Vox"/>
+            <item value="Fifth Sawtooth Wave"/>
+            <item value="Bass &amp; Lead"/>
+            <item value="Fantasia"/>
+            <item value="Warm Pad"/>
+            <item value="Polysynth"/>
+            <item value="Space Voice"/>
+            <item value="Bowed Glass"/>
+            <item value="Metal Pad"/>
+            <item value="Halo Pad"/>
+            <item value="Sweep Pad"/>
+            <item value="Ice Rain"/>
+            <item value="Soundtrack"/>
+            <item value="Crystal"/>
+            <item value="Atmosphere"/>
+            <item value="Brightness"/>
+            <item value="Goblin"/>
+            <item value="Echo Drops"/>
+            <item value="Star Theme"/>
+            <item value="Sitar"/>
+            <item value="Banjo"/>
+            <item value="Shamisen"/>
+            <item value="Koto"/>
+            <item value="Kalimba"/>
+            <item value="BagPipe"/>
+            <item value="Fiddle"/>
+            <item value="Shenai"/>
+            <item value="Tinker Bell"/>
+            <item value="Agogo"/>
+            <item value="Steel Drums"/>
+            <item value="Woodblock"/>
+            <item value="Taiko Drum"/>
+            <item value="Melodic Tom"/>
+            <item value="Synth Drum"/>
+            <item value="Reverse Cymbal"/>
+            <item value="Fret Noise"/>
+            <item value="Breath Noise"/>
+            <item value="Sea Shore"/>
+            <item value="Bird Tweet"/>
+            <item value="Telephone"/>
+            <item value="Helicopter"/>
+            <item value="Applause"/>
+            <item value="Gun Shot"/>
+            <item value="Detuned EP 1"/>
+            <item value="Detuned EP 2"/>
+            <item value="Coupled Harpsichord"/>
+            <item value="Church Bell"/>
+            <item value="Detuned Organ 1"/>
+            <item value="Detuned Organ 2"/>
+            <item value="Church Organ 2"/>
+            <item value="Italian Accordion"/>
+            <item value="Ukulele"/>
+            <item value="12 String Guitar"/>
+            <item value="Hawaiian Guitar"/>
+            <item value="Funk Guitar"/>
+            <item value="Feedback Guitar"/>
+            <item value="Guitar Feedback"/>
+            <item value="Synth Bass 3"/>
+            <item value="Synth Bass 4"/>
+            <item value="Slow Violin"/>
+            <item value="Orchestral Pad"/>
+            <item value="Synth Strings 3"/>
+            <item value="Brass 2"/>
+            <item value="Synth Brass 3"/>
+            <item value="Synth Brass 4"/>
+            <item value="Sine Wave"/>
+            <item value="Taisho Koto"/>
+            <item value="Castanets"/>
+            <item value="Concert Bass Drum"/>
+            <item value="Melo Tom 2"/>
+            <item value="808 Tom"/>
+            <item value="Burst Noise"/>
+            <item value="Mandolin"/>
+            <item value="Standard"/>
+            <item value="Standard 1"/>
+            <item value="Standard 2"/>
+            <item value="Standard 3"/>
+            <item value="Standard 4"/>
+            <item value="Standard 5"/>
+            <item value="Standard 6"/>
+            <item value="Standard 7"/>
+            <item value="Room"/>
+            <item value="Room 1"/>
+            <item value="Room 2"/>
+            <item value="Room 3"/>
+            <item value="Room 4"/>
+            <item value="Room 5"/>
+            <item value="Room 6"/>
+            <item value="Room 7"/>
+            <item value="Power"/>
+            <item value="Power 1"/>
+            <item value="Power 2"/>
+            <item value="Power 3"/>
+            <item value="Electronic"/>
+            <item value="TR-808"/>
+            <item value="Jazz"/>
+            <item value="Jazz 1"/>
+            <item value="Jazz 2"/>
+            <item value="Jazz 3"/>
+            <item value="Jazz 4"/>
+            <item value="Brush"/>
+            <item value="Brush 1"/>
+            <item value="Brush 2"/>
+            <item value="Orchestra Kit"/>
+          </model>
+        </properties>
+      </component>
+      <component id="97d5f" class="javax.swing.JToggleButton" binding="FirstMelodySoloButton">
+        <constraints>
+          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Solo"/>
+        </properties>
+      </component>
+      <component id="d830d" class="javax.swing.JToggleButton" binding="FirstMelodyMuteButton">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Mute"/>
+        </properties>
+      </component>
+      <component id="a2fbc" class="javax.swing.JToggleButton" binding="SecondBassMuteButton">
+        <constraints>
+          <grid row="6" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Mute"/>
+        </properties>
+      </component>
+      <component id="8c606" class="javax.swing.JToggleButton" binding="SecondBassSoloButton">
+        <constraints>
+          <grid row="6" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Solo"/>
+        </properties>
+      </component>
+      <component id="e25ff" class="javax.swing.JComboBox" binding="SecondBassDropDown">
+        <constraints>
+          <grid row="6" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model>
+            <item value="Yamaha Grand Piano"/>
+            <item value="Bright Yamaha Grand"/>
+            <item value="Electric Piano"/>
+            <item value="Honky Tonk"/>
+            <item value="Rhodes EP"/>
+            <item value="Legend EP 2"/>
+            <item value="Harpsichord"/>
+            <item value="Clavinet"/>
+            <item value="Celesta"/>
+            <item value="Glockenspiel"/>
+            <item value="Music Box"/>
+            <item value="Vibraphone"/>
+            <item value="Marimba"/>
+            <item value="Xylophone"/>
+            <item value="Tubular Bells"/>
+            <item value="Dulcimer"/>
+            <item value="DrawbarOrgan"/>
+            <item value="Percussive Organ"/>
+            <item value="Rock Organ"/>
+            <item value="Church Organ"/>
+            <item value="Reed Organ"/>
+            <item value="Accordian"/>
+            <item value="Harmonica"/>
+            <item value="Bandoneon"/>
+            <item value="Nylon String Guitar"/>
+            <item value="Steel String Guitar"/>
+            <item value="Jazz Guitar"/>
+            <item value="Clean Guitar"/>
+            <item value="Palm Muted Guitar"/>
+            <item value="Overdrive Guitar"/>
+            <item value="Distortion Guitar"/>
+            <item value="Guitar Harmonics"/>
+            <item value="Acoustic Bass"/>
+            <item value="Fingered Bass"/>
+            <item value="Picked Bass"/>
+            <item value="Fretless Bass"/>
+            <item value="Slap Bass"/>
+            <item value="Pop Bass"/>
+            <item value="Synth Bass 1"/>
+            <item value="Synth Bass 2"/>
+            <item value="Violin"/>
+            <item value="Viola"/>
+            <item value="Cello"/>
+            <item value="Contrabass"/>
+            <item value="Tremolo"/>
+            <item value="Pizzicato Section"/>
+            <item value="Harp"/>
+            <item value="Timpani"/>
+            <item value="Strings"/>
+            <item value="Slow Strings"/>
+            <item value="Synth Strings 1"/>
+            <item value="Synth Strings 2"/>
+            <item value="Ahh Choir"/>
+            <item value="Ohh Voices"/>
+            <item value="Synth Voice"/>
+            <item value="Orchestra Hit"/>
+            <item value="Trumpet"/>
+            <item value="Trombone"/>
+            <item value="Tuba"/>
+            <item value="Muted Trumpet"/>
+            <item value="French Horns"/>
+            <item value="Brass Section"/>
+            <item value="Synth Brass 1"/>
+            <item value="Synth Brass 2"/>
+            <item value="Soprano Sax"/>
+            <item value="Alto Sax"/>
+            <item value="Tenor Sax"/>
+            <item value="Baritone Sax"/>
+            <item value="Oboe"/>
+            <item value="English Horn"/>
+            <item value="Bassoon"/>
+            <item value="Clarinet"/>
+            <item value="Piccolo"/>
+            <item value="Flute"/>
+            <item value="Recorder"/>
+            <item value="Pan Flute"/>
+            <item value="Bottle Chiff"/>
+            <item value="Shakuhachi"/>
+            <item value="Whistle"/>
+            <item value="Ocarina"/>
+            <item value="Square Lead"/>
+            <item value="Saw Wave"/>
+            <item value="Calliope Lead"/>
+            <item value="Chiffer Lead"/>
+            <item value="Charang"/>
+            <item value="Solo Vox"/>
+            <item value="Fifth Sawtooth Wave"/>
+            <item value="Bass &amp; Lead"/>
+            <item value="Fantasia"/>
+            <item value="Warm Pad"/>
+            <item value="Polysynth"/>
+            <item value="Space Voice"/>
+            <item value="Bowed Glass"/>
+            <item value="Metal Pad"/>
+            <item value="Halo Pad"/>
+            <item value="Sweep Pad"/>
+            <item value="Ice Rain"/>
+            <item value="Soundtrack"/>
+            <item value="Crystal"/>
+            <item value="Atmosphere"/>
+            <item value="Brightness"/>
+            <item value="Goblin"/>
+            <item value="Echo Drops"/>
+            <item value="Star Theme"/>
+            <item value="Sitar"/>
+            <item value="Banjo"/>
+            <item value="Shamisen"/>
+            <item value="Koto"/>
+            <item value="Kalimba"/>
+            <item value="BagPipe"/>
+            <item value="Fiddle"/>
+            <item value="Shenai"/>
+            <item value="Tinker Bell"/>
+            <item value="Agogo"/>
+            <item value="Steel Drums"/>
+            <item value="Woodblock"/>
+            <item value="Taiko Drum"/>
+            <item value="Melodic Tom"/>
+            <item value="Synth Drum"/>
+            <item value="Reverse Cymbal"/>
+            <item value="Fret Noise"/>
+            <item value="Breath Noise"/>
+            <item value="Sea Shore"/>
+            <item value="Bird Tweet"/>
+            <item value="Telephone"/>
+            <item value="Helicopter"/>
+            <item value="Applause"/>
+            <item value="Gun Shot"/>
+            <item value="Detuned EP 1"/>
+            <item value="Detuned EP 2"/>
+            <item value="Coupled Harpsichord"/>
+            <item value="Church Bell"/>
+            <item value="Detuned Organ 1"/>
+            <item value="Detuned Organ 2"/>
+            <item value="Church Organ 2"/>
+            <item value="Italian Accordion"/>
+            <item value="Ukulele"/>
+            <item value="12 String Guitar"/>
+            <item value="Hawaiian Guitar"/>
+            <item value="Funk Guitar"/>
+            <item value="Feedback Guitar"/>
+            <item value="Guitar Feedback"/>
+            <item value="Synth Bass 3"/>
+            <item value="Synth Bass 4"/>
+            <item value="Slow Violin"/>
+            <item value="Orchestral Pad"/>
+            <item value="Synth Strings 3"/>
+            <item value="Brass 2"/>
+            <item value="Synth Brass 3"/>
+            <item value="Synth Brass 4"/>
+            <item value="Sine Wave"/>
+            <item value="Taisho Koto"/>
+            <item value="Castanets"/>
+            <item value="Concert Bass Drum"/>
+            <item value="Melo Tom 2"/>
+            <item value="808 Tom"/>
+            <item value="Burst Noise"/>
+            <item value="Mandolin"/>
+            <item value="Standard"/>
+            <item value="Standard 1"/>
+            <item value="Standard 2"/>
+            <item value="Standard 3"/>
+            <item value="Standard 4"/>
+            <item value="Standard 5"/>
+            <item value="Standard 6"/>
+            <item value="Standard 7"/>
+            <item value="Room"/>
+            <item value="Room 1"/>
+            <item value="Room 2"/>
+            <item value="Room 3"/>
+            <item value="Room 4"/>
+            <item value="Room 5"/>
+            <item value="Room 6"/>
+            <item value="Room 7"/>
+            <item value="Power"/>
+            <item value="Power 1"/>
+            <item value="Power 2"/>
+            <item value="Power 3"/>
+            <item value="Electronic"/>
+            <item value="TR-808"/>
+            <item value="Jazz"/>
+            <item value="Jazz 1"/>
+            <item value="Jazz 2"/>
+            <item value="Jazz 3"/>
+            <item value="Jazz 4"/>
+            <item value="Brush"/>
+            <item value="Brush 1"/>
+            <item value="Brush 2"/>
+            <item value="Orchestra Kit"/>
+          </model>
+        </properties>
+      </component>
+      <component id="9801c" class="javax.swing.JComboBox" binding="FirstBassDropDown">
+        <constraints>
+          <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model>
+            <item value="Yamaha Grand Piano"/>
+            <item value="Bright Yamaha Grand"/>
+            <item value="Electric Piano"/>
+            <item value="Honky Tonk"/>
+            <item value="Rhodes EP"/>
+            <item value="Legend EP 2"/>
+            <item value="Harpsichord"/>
+            <item value="Clavinet"/>
+            <item value="Celesta"/>
+            <item value="Glockenspiel"/>
+            <item value="Music Box"/>
+            <item value="Vibraphone"/>
+            <item value="Marimba"/>
+            <item value="Xylophone"/>
+            <item value="Tubular Bells"/>
+            <item value="Dulcimer"/>
+            <item value="DrawbarOrgan"/>
+            <item value="Percussive Organ"/>
+            <item value="Rock Organ"/>
+            <item value="Church Organ"/>
+            <item value="Reed Organ"/>
+            <item value="Accordian"/>
+            <item value="Harmonica"/>
+            <item value="Bandoneon"/>
+            <item value="Nylon String Guitar"/>
+            <item value="Steel String Guitar"/>
+            <item value="Jazz Guitar"/>
+            <item value="Clean Guitar"/>
+            <item value="Palm Muted Guitar"/>
+            <item value="Overdrive Guitar"/>
+            <item value="Distortion Guitar"/>
+            <item value="Guitar Harmonics"/>
+            <item value="Acoustic Bass"/>
+            <item value="Fingered Bass"/>
+            <item value="Picked Bass"/>
+            <item value="Fretless Bass"/>
+            <item value="Slap Bass"/>
+            <item value="Pop Bass"/>
+            <item value="Synth Bass 1"/>
+            <item value="Synth Bass 2"/>
+            <item value="Violin"/>
+            <item value="Viola"/>
+            <item value="Cello"/>
+            <item value="Contrabass"/>
+            <item value="Tremolo"/>
+            <item value="Pizzicato Section"/>
+            <item value="Harp"/>
+            <item value="Timpani"/>
+            <item value="Strings"/>
+            <item value="Slow Strings"/>
+            <item value="Synth Strings 1"/>
+            <item value="Synth Strings 2"/>
+            <item value="Ahh Choir"/>
+            <item value="Ohh Voices"/>
+            <item value="Synth Voice"/>
+            <item value="Orchestra Hit"/>
+            <item value="Trumpet"/>
+            <item value="Trombone"/>
+            <item value="Tuba"/>
+            <item value="Muted Trumpet"/>
+            <item value="French Horns"/>
+            <item value="Brass Section"/>
+            <item value="Synth Brass 1"/>
+            <item value="Synth Brass 2"/>
+            <item value="Soprano Sax"/>
+            <item value="Alto Sax"/>
+            <item value="Tenor Sax"/>
+            <item value="Baritone Sax"/>
+            <item value="Oboe"/>
+            <item value="English Horn"/>
+            <item value="Bassoon"/>
+            <item value="Clarinet"/>
+            <item value="Piccolo"/>
+            <item value="Flute"/>
+            <item value="Recorder"/>
+            <item value="Pan Flute"/>
+            <item value="Bottle Chiff"/>
+            <item value="Shakuhachi"/>
+            <item value="Whistle"/>
+            <item value="Ocarina"/>
+            <item value="Square Lead"/>
+            <item value="Saw Wave"/>
+            <item value="Calliope Lead"/>
+            <item value="Chiffer Lead"/>
+            <item value="Charang"/>
+            <item value="Solo Vox"/>
+            <item value="Fifth Sawtooth Wave"/>
+            <item value="Bass &amp; Lead"/>
+            <item value="Fantasia"/>
+            <item value="Warm Pad"/>
+            <item value="Polysynth"/>
+            <item value="Space Voice"/>
+            <item value="Bowed Glass"/>
+            <item value="Metal Pad"/>
+            <item value="Halo Pad"/>
+            <item value="Sweep Pad"/>
+            <item value="Ice Rain"/>
+            <item value="Soundtrack"/>
+            <item value="Crystal"/>
+            <item value="Atmosphere"/>
+            <item value="Brightness"/>
+            <item value="Goblin"/>
+            <item value="Echo Drops"/>
+            <item value="Star Theme"/>
+            <item value="Sitar"/>
+            <item value="Banjo"/>
+            <item value="Shamisen"/>
+            <item value="Koto"/>
+            <item value="Kalimba"/>
+            <item value="BagPipe"/>
+            <item value="Fiddle"/>
+            <item value="Shenai"/>
+            <item value="Tinker Bell"/>
+            <item value="Agogo"/>
+            <item value="Steel Drums"/>
+            <item value="Woodblock"/>
+            <item value="Taiko Drum"/>
+            <item value="Melodic Tom"/>
+            <item value="Synth Drum"/>
+            <item value="Reverse Cymbal"/>
+            <item value="Fret Noise"/>
+            <item value="Breath Noise"/>
+            <item value="Sea Shore"/>
+            <item value="Bird Tweet"/>
+            <item value="Telephone"/>
+            <item value="Helicopter"/>
+            <item value="Applause"/>
+            <item value="Gun Shot"/>
+            <item value="Detuned EP 1"/>
+            <item value="Detuned EP 2"/>
+            <item value="Coupled Harpsichord"/>
+            <item value="Church Bell"/>
+            <item value="Detuned Organ 1"/>
+            <item value="Detuned Organ 2"/>
+            <item value="Church Organ 2"/>
+            <item value="Italian Accordion"/>
+            <item value="Ukulele"/>
+            <item value="12 String Guitar"/>
+            <item value="Hawaiian Guitar"/>
+            <item value="Funk Guitar"/>
+            <item value="Feedback Guitar"/>
+            <item value="Guitar Feedback"/>
+            <item value="Synth Bass 3"/>
+            <item value="Synth Bass 4"/>
+            <item value="Slow Violin"/>
+            <item value="Orchestral Pad"/>
+            <item value="Synth Strings 3"/>
+            <item value="Brass 2"/>
+            <item value="Synth Brass 3"/>
+            <item value="Synth Brass 4"/>
+            <item value="Sine Wave"/>
+            <item value="Taisho Koto"/>
+            <item value="Castanets"/>
+            <item value="Concert Bass Drum"/>
+            <item value="Melo Tom 2"/>
+            <item value="808 Tom"/>
+            <item value="Burst Noise"/>
+            <item value="Mandolin"/>
+            <item value="Standard"/>
+            <item value="Standard 1"/>
+            <item value="Standard 2"/>
+            <item value="Standard 3"/>
+            <item value="Standard 4"/>
+            <item value="Standard 5"/>
+            <item value="Standard 6"/>
+            <item value="Standard 7"/>
+            <item value="Room"/>
+            <item value="Room 1"/>
+            <item value="Room 2"/>
+            <item value="Room 3"/>
+            <item value="Room 4"/>
+            <item value="Room 5"/>
+            <item value="Room 6"/>
+            <item value="Room 7"/>
+            <item value="Power"/>
+            <item value="Power 1"/>
+            <item value="Power 2"/>
+            <item value="Power 3"/>
+            <item value="Electronic"/>
+            <item value="TR-808"/>
+            <item value="Jazz"/>
+            <item value="Jazz 1"/>
+            <item value="Jazz 2"/>
+            <item value="Jazz 3"/>
+            <item value="Jazz 4"/>
+            <item value="Brush"/>
+            <item value="Brush 1"/>
+            <item value="Brush 2"/>
+            <item value="Orchestra Kit"/>
+          </model>
+        </properties>
+      </component>
+      <component id="30ffe" class="javax.swing.JToggleButton" binding="FirstBassSoloButton">
+        <constraints>
+          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Solo"/>
+        </properties>
+      </component>
+      <component id="5f72" class="javax.swing.JToggleButton" binding="FirstBassMuteButton">
+        <constraints>
+          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Mute"/>
+        </properties>
+      </component>
+      <component id="358a" class="javax.swing.JToggleButton" binding="SecondDrumMuteButton">
+        <constraints>
+          <grid row="7" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Mute"/>
+        </properties>
+      </component>
+      <component id="7b1fe" class="javax.swing.JToggleButton" binding="SecondDrumSoloButton">
+        <constraints>
+          <grid row="7" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Solo"/>
+        </properties>
+      </component>
+      <component id="7dcd6" class="javax.swing.JToggleButton" binding="FirstDrumSoloButton">
+        <constraints>
+          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Solo"/>
+        </properties>
+      </component>
+      <component id="52c2e" class="javax.swing.JToggleButton" binding="FirstDrumMuteButton">
+        <constraints>
+          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Mute"/>
+        </properties>
+      </component>
+      <component id="7fed0" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="First Amino Acid Track"/>
+        </properties>
+      </component>
+      <component id="feb2f" class="javax.swing.JButton" binding="stopButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <horizontalAlignment value="0"/>
+          <text value="stop"/>
+        </properties>
+      </component>
+      <component id="d41e5" class="javax.swing.JButton" binding="playButton">
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Verdana"/>
+          <text value="play"/>
+        </properties>
+      </component>
+      <component id="b9fbb" class="javax.swing.JTextField" binding="secondAminoAcid">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="MVHLTPVEVGGEALGWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH"/>
+        </properties>
+      </component>
+      <component id="4ff76" class="javax.swing.JTextField" binding="firstAminoAcid">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="MVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH"/>
+        </properties>
+      </component>
+      <component id="1a149" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="4" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Second Amino Acid Track"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
