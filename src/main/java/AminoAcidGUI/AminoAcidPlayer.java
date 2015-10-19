@@ -46,17 +46,30 @@ public class AminoAcidPlayer extends JFrame {
         SecondBassDropDown.setSelectedIndex(35);
 
         playButton.addActionListener(e -> {
+//            String[] instruments = mi.listInstruments();
+//            for(int i=0; i<instruments.length;i++){
+//                System.out.println(i+" "+instruments[i]);
+//            }
             if (!trackPresent) {
                 mi.createMidi(firstAminoAcid.getText(), secondAminoAcid.getText());
-                mi.setInstrument(mi.rhythmGuitarTrackNumber(),FirstRhythmDropDown.getSelectedIndex());
-                mi.setInstrument(mi.melodyTrackNumber(),FirstMelodyDropDown.getSelectedIndex());
-                mi.setInstrument(mi.bassTrackNumber(),FirstBassDropDown.getSelectedIndex());
-                mi.setInstrument(mi.altRhythmGuitarTrackNumber(),SecondRhythmDropDown.getSelectedIndex());
-                mi.setInstrument(mi.altMelodyTrackNumber(), SecondMelodyDropDown.getSelectedIndex());
-                mi.setInstrument(mi.altBassTrackNumber(), SecondBassDropDown.getSelectedIndex());
+                mi.setInstrument(mi.rhythmGuitarTrack(),0,FirstRhythmDropDown.getSelectedIndex());
+                mi.setInstrument(mi.melodyTrack(), 2,FirstMelodyDropDown.getSelectedIndex());
+                mi.setInstrument(mi.bassTrack(), 4,FirstBassDropDown.getSelectedIndex());
+                mi.setInstrument(mi.altRhythmGuitarTrack(),1,SecondRhythmDropDown.getSelectedIndex());
+                mi.setInstrument(mi.altMelodyTrack(),3, SecondMelodyDropDown.getSelectedIndex());
+                mi.setInstrument(mi.altBassTrack(), 5, SecondBassDropDown.getSelectedIndex());
                 mi.playMidi(120);
                 paused = false;
                 trackPresent = true;
+                playButton.setText("pause");
+            } else if(paused){
+                mi.playMidi(120);
+                paused = false;
+                playButton.setText("pause");
+            }else{
+                mi.stopMidi();
+                paused = true;
+                playButton.setText("play");
             }
         });
         stopButton.addActionListener(e -> {
@@ -66,27 +79,31 @@ public class AminoAcidPlayer extends JFrame {
             trackPresent = false;
         });
 
-        FirstRhythmDropDown.addActionListener(e -> mi.setInstrument(mi.rhythmGuitarTrackNumber(), FirstRhythmDropDown.getSelectedIndex()));
-        SecondRhythmDropDown.addActionListener(e -> mi.setInstrument(mi.altRhythmGuitarTrackNumber(), SecondRhythmDropDown.getSelectedIndex()));
-        FirstMelodyDropDown.addActionListener(e -> mi.setInstrument(mi.melodyTrackNumber(), FirstMelodyDropDown.getSelectedIndex()));
-        SecondMelodyDropDown.addActionListener(e -> mi.setInstrument(mi.altMelodyTrackNumber(), SecondMelodyDropDown.getSelectedIndex()));
-        FirstBassDropDown.addActionListener(e -> mi.setInstrument(mi.bassTrackNumber(), FirstBassDropDown.getSelectedIndex()));
-        SecondBassDropDown.addActionListener(e -> mi.setInstrument(mi.altBassTrackNumber(), SecondBassDropDown.getSelectedIndex()));
+        FirstRhythmDropDown.addActionListener(e -> mi.setInstrument(mi.rhythmGuitarTrack(), 0, FirstRhythmDropDown.getSelectedIndex()));
+        SecondRhythmDropDown.addActionListener(e -> mi.setInstrument(mi.altRhythmGuitarTrack(),1, SecondRhythmDropDown.getSelectedIndex()));
+        FirstMelodyDropDown.addActionListener(e -> mi.setInstrument(mi.melodyTrack(),2, FirstMelodyDropDown.getSelectedIndex()));
+        SecondMelodyDropDown.addActionListener(e -> mi.setInstrument(mi.altMelodyTrack(),3, SecondMelodyDropDown.getSelectedIndex()));
+        FirstBassDropDown.addActionListener(e -> mi.setInstrument(mi.bassTrack(), 4, FirstBassDropDown.getSelectedIndex()));
+        SecondBassDropDown.addActionListener(e -> mi.setInstrument(mi.altBassTrack(), 5, SecondBassDropDown.getSelectedIndex()));
 
 
-        FirstMelodySoloButton.addActionListener(e -> mi.soloTrack(mi.melodyTrackNumber()));
-        FirstRhythmSoloButton.addActionListener(e -> mi.soloTrack(mi.rhythmGuitarTrackNumber()));
-        FirstBassSoloButton.addActionListener(e -> mi.soloTrack(mi.bassTrackNumber()));
-        SecondMelodySoloButton.addActionListener(e -> mi.soloTrack(mi.altMelodyTrackNumber()));
-        SecondRhythmSoloButton.addActionListener(e -> mi.soloTrack(mi.altRhythmGuitarTrackNumber()));
-        SecondBassSoloButton.addActionListener(e -> mi.soloTrack(mi.altBassTrackNumber()));
+        FirstMelodySoloButton.addActionListener(e -> mi.soloTrack(mi.melodyTrackIndex()));
+        FirstRhythmSoloButton.addActionListener(e -> mi.soloTrack(mi.rhythmGuitarTrackIndex()));
+        FirstBassSoloButton.addActionListener(e -> mi.soloTrack(mi.bassTrackIndex()));
+        FirstDrumSoloButton.addActionListener(e -> mi.soloTrack(mi.drumTrackIndex()));
+        SecondMelodySoloButton.addActionListener(e -> mi.soloTrack(mi.altMelodyTrackIndex()));
+        SecondRhythmSoloButton.addActionListener(e -> mi.soloTrack(mi.altRhythmGuitarTrackIndex()));
+        SecondBassSoloButton.addActionListener(e -> mi.soloTrack(mi.altBassTrackIndex()));
+        SecondDrumSoloButton.addActionListener(e -> mi.soloTrack(mi.altDrumTrackIndex()));
 
-        FirstMelodyMuteButton.addActionListener(e -> mi.muteTrack(mi.melodyTrackNumber()));
-        FirstRhythmMuteButton.addActionListener(e -> mi.muteTrack(mi.rhythmGuitarTrackNumber()));
-        FirstBassSoloButton.addActionListener(e -> mi.muteTrack(mi.bassTrackNumber()));
-        SecondMelodySoloButton.addActionListener(e -> mi.muteTrack(mi.altMelodyTrackNumber()));
-        SecondRhythmSoloButton.addActionListener(e -> mi.muteTrack(mi.altRhythmGuitarTrackNumber()));
-        SecondBassSoloButton.addActionListener(e -> mi.muteTrack(mi.altBassTrackNumber()));
+        FirstMelodyMuteButton.addActionListener(e -> mi.muteTrack(mi.melodyTrackIndex()));
+        FirstRhythmMuteButton.addActionListener(e -> mi.muteTrack(mi.rhythmGuitarTrackIndex()));
+        FirstBassMuteButton.addActionListener(e -> mi.muteTrack(mi.bassTrackIndex()));
+        FirstDrumMuteButton.addActionListener(e -> mi.muteTrack(mi.drumTrackIndex()));
+        SecondMelodyMuteButton.addActionListener(e -> mi.muteTrack(mi.altMelodyTrackIndex()));
+        SecondRhythmMuteButton.addActionListener(e -> mi.muteTrack(mi.altRhythmGuitarTrackIndex()));
+        SecondBassMuteButton.addActionListener(e -> mi.muteTrack(mi.altBassTrackIndex()));
+        SecondDrumMuteButton.addActionListener(e -> mi.muteTrack(mi.altDrumTrackIndex()));
     }
 
     public static void main(String[] args) {

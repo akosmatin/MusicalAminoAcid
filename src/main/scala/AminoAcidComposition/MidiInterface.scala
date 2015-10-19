@@ -6,22 +6,35 @@ package AminoAcidComposition
  * into that track
  */
 
+import javax.sound.midi.Track
+
 import AminoAcidComposition.AminoAcid.AminoAcidAbstract
 import AminoAcidComposition.SongStructure.MusicCommon
 
 object MidiInterface extends MusicCommon {
-  val testSeq = "YWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYW"
+//  val testSeq = "YWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYW"
 
-  val thyA = "MKQYLELMQKVLDEGTQKNDRTGTGTLSIFGHQMRFNLQDGFPLVTTKRCHLRSIIHELLWFLQGDTNIAYLHENNVTIWDEWADENGDLGPVYGKQWRAWPTPDGRHIDQITTVLNQLKNDPDSRRIIVSAWNVGELDKMALAPCHAFFQFYVADGKLSCQLYQRSCDVFLGLPFNIASYALLVHMMAQQCDLEVGDFVWTGGDTHLYSNHMDQTHLQLSREPRPLPKLIIKRKPESIFDYRFEDFEIEGYDPHPGIKAPVAI"
-  val betaGlobin =  "MVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH"
-  val betaGlobin2 = "MVHLTPVEVGGEALGWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH"
+//  val thyA = "MKQYLELMQKVLDEGTQKNDRTGTGTLSIFGHQMRFNLQDGFPLVTTKRCHLRSIIHELLWFLQGDTNIAYLHENNVTIWDEWADENGDLGPVYGKQWRAWPTPDGRHIDQITTVLNQLKNDPDSRRIIVSAWNVGELDKMALAPCHAFFQFYVADGKLSCQLYQRSCDVFLGLPFNIASYALLVHMMAQQCDLEVGDFVWTGGDTHLYSNHMDQTHLQLSREPRPLPKLIIKRKPESIFDYRFEDFEIEGYDPHPGIKAPVAI"
+//  val betaGlobin =  "MVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH"
+//  val betaGlobin2 = "MVHLTPVEVGGEALGWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH"
 
-  override val rhythmGuitarTrackNumber = mc.rhythmGuitarTrackNumber
-  override val altRhythmGuitarTrackNumber = mc.altRhythmGuitarTrackNumber
-  override val melodyTrackNumber = mc.melodyTrackNumber
-  override val altMelodyTrackNumber = mc.altMelodyTrackNumber
-  override val bassTrackNumber = mc.bassTrackNumber
-  override val altBassTrackNumber = mc.altBassTrackNumber
+  val rhythmGuitarTrackIndex = 0
+  val altRhythmGuitarTrackIndex = 1
+  val melodyTrackIndex = 2
+  val altMelodyTrackIndex = 3
+  val bassTrackIndex = 4
+  val altBassTrackIndex = 5
+  val drumTrackIndex = 6
+  val altDrumTrackIndex = 7
+
+  val rhythmGuitarTrack = mc.rhythmGuitarTrack
+  val altRhythmGuitarTrack = mc.altRhythmGuitarTrack
+  val melodyTrack = mc.melodyTrack
+  val altMelodyTrack = mc.altMelodyTrack
+  val bassTrack = mc.bassTrack
+  val altBassTrack = mc.altBassTrack
+  val drumTrack = mc.drumTrack
+  val altDrumTrack = mc.altDrumTrack
 
   def createMidi(sequence1:String, sequence2:String) = {
     for (i <- Range(0, sequence1.length)) {
@@ -57,15 +70,15 @@ object MidiInterface extends MusicCommon {
     mc.listInstruments()
   }
 
-  def setInstrument(track:Int, instrument:Int) = {
-    mc.changeInstrument(track, instrument)
+  def setInstrument(track:Track, trackNumber:Int, instrument:Int) = {
+    mc.changeInstrument(track, trackNumber, instrument)
   }
 
-  def muteTrack(trackNumber:Int) = {
-    mc.muteTrack(trackNumber)
+  def muteTrack(trackIndex:Int) = {
+    mc.muteTrack(trackIndex)
   }
 
-  def soloTrack(trackNumber:Int) = {
-    mc.soloTrack(trackNumber)
+  def soloTrack(trackIndex:Int) = {
+    mc.soloTrack(trackIndex)
   }
 }

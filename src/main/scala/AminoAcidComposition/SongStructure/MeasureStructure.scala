@@ -16,7 +16,7 @@ class MeasureStructure(c:Chord,b:BassTrait,d:DrumTrait,m:MelodyTrait,rg:RhythmGu
           b.getTrack(c.rootNotes._2, alternateTrack, firstChord = false) ++
           m.getTrack(c.rootNotes._1, alternateTrack)
     } {
-      mc.addNote(n.track, n.note, n.velocity, measureOffset + n.start, n.duration)
+      mc.addNote(n.track,n.trackNumber, n.note, n.velocity, measureOffset + n.start, n.duration)
     }
   }
 }

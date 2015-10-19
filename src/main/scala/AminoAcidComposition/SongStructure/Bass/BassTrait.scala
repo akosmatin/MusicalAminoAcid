@@ -3,7 +3,7 @@ package AminoAcidComposition.SongStructure.Bass
 import AminoAcidComposition.SongStructure.{Instrument, MusicCommon}
 
 trait BassTrait extends Instrument with MusicCommon {
-  mc.changeInstrument(1, 33)
-  val trackNumber = 1
+  val trackNumber = 4
+  val altTrackNumber = 5
   val velocity = 100
 }

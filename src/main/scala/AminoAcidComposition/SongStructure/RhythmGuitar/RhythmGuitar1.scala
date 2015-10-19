@@ -22,7 +22,7 @@ object RhythmGuitar1 extends RhythmGuitarTrait {
       }
 
       for (n <- rhythmTrack) yield {
-        Note(rhythmGuitarTrackNumber, n._3, n._4, n._1, n._2)
+        Note(mc.rhythmGuitarTrack, trackNumber, n._3, n._4, n._1, n._2)
       }
     } else {
       val chord = rootNote match {
@@ -47,7 +47,7 @@ object RhythmGuitar1 extends RhythmGuitarTrait {
           )
         )
       }
-      notes.map(n=>Note(altRhythmGuitarTrackNumber,n._3,altVelocity,n._1,n._2))
+      notes.map(n=>Note(mc.altRhythmGuitarTrack, altTrackNumber,n._3,altVelocity,n._1,n._2))
     }
   }
 }

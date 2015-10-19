@@ -23,45 +23,46 @@ trait MusicCommon {
   val dottedQuarter = 3*noteDivision/2
   val half = 2*noteDivision
   val dottedHalf = 5*noteDivision/2
-
-  val rhythmGuitarTrackNumber = 0
-  val altRhythmGuitarTrackNumber = 3
-  val melodyTrackNumber = 2
-  val altMelodyTrackNumber = 4
-  val bassTrackNumber = 1
-  val altBassTrackNumber = 5
 }
 
 object MusicCommon extends MusicCommon{
   private val sequence = new Sequence(Sequence.PPQ, noteDivision)
-  private val track: Track = sequence.createTrack()
   private val sequencer = MidiSystem.getSequencer
+
+  val rhythmGuitarTrack = sequence.createTrack()
+  val altRhythmGuitarTrack = sequence.createTrack()
+  val melodyTrack = sequence.createTrack()
+  val altMelodyTrack = sequence.createTrack()
+  val bassTrack = sequence.createTrack()
+  val altBassTrack = sequence.createTrack()
+  val drumTrack = sequence.createTrack()
+  val altDrumTrack = sequence.createTrack()
 
   private val inst = MidiSystem.getSynthesizer.getDefaultSoundbank.getInstruments
 
-  def changeInstrument(trackNumber:Int, instrument:Int) = {
-    addMidiEvent(ShortMessage.PROGRAM_CHANGE, trackNumber,  inst(instrument).getPatch.getProgram, inst(instrument).getPatch.getBank, sequencer.getTickPosition)
+  def changeInstrument(track:Track, trackNumber:Int, instrument:Int) = {
+    addMidiEvent(track, ShortMessage.PROGRAM_CHANGE, trackNumber,  inst(instrument).getPatch.getProgram, inst(instrument).getPatch.getBank, sequencer.getTickPosition)
   }
 
-  def muteTrack(trackNumber:Int) = {
-    if(sequencer.getTrackMute(trackNumber)){
-      sequencer.setTrackMute(trackNumber,false)
+  def muteTrack(trackIndex:Int) = {
+    if(sequencer.getTrackMute(trackIndex)){
+      sequencer.setTrackMute(trackIndex,false)
     } else {
-      sequencer.setTrackMute(trackNumber,true)
+      sequencer.setTrackMute(trackIndex,true)
     }
   }
 
-  def soloTrack(trackNumber:Int) = {
-    if(sequencer.getTrackSolo(trackNumber)){
-      sequencer.setTrackSolo(trackNumber,false)
+  def soloTrack(trackIndex:Int) = {
+    if(sequencer.getTrackSolo(trackIndex)){
+      sequencer.setTrackSolo(trackIndex,false)
     } else {
-      sequencer.setTrackSolo(trackNumber,true)
+      sequencer.setTrackSolo(trackIndex,true)
     }
   }
 
-  def addNote(trackNumber:Int, note:Int, velocity: Int, start: Int, duration:Int) = {
-    addMidiEvent(ShortMessage.NOTE_ON, trackNumber, note, velocity, start)
-    addMidiEvent(ShortMessage.NOTE_OFF, trackNumber, note, velocity, start+duration)
+  def addNote(track:Track, trackNumber:Int, note:Int, velocity: Int, start: Int, duration:Int) = {
+    addMidiEvent(track, ShortMessage.NOTE_ON, trackNumber, note, velocity, start)
+    addMidiEvent(track, ShortMessage.NOTE_OFF, trackNumber, note, velocity, start+duration)
   }
 
   def listInstruments() = {
@@ -79,14 +80,15 @@ object MusicCommon extends MusicCommon{
     sequencer.setTempoInBPM(bpm)
     sequencer.setTrackMute(9, false)
     sequencer.start()
-
   }
 
   def stopMidi() = {
     sequencer.stop()
     sequencer.close()
-    while(track.size()!=0){
-      track.remove(track.get(0))
+    for(track <- Seq(rhythmGuitarTrack,altRhythmGuitarTrack,melodyTrack,altMelodyTrack,bassTrack,altBassTrack,drumTrack,altDrumTrack)) {
+      while (track.size() != 0) {
+        track.remove(track.get(0))
+      }
     }
   }
 
@@ -94,7 +96,7 @@ object MusicCommon extends MusicCommon{
   //note and velocity for adding notes
   //program and bank for changing instrument
   //something and something for changing tempo
-  private def addMidiEvent(midiCommand: Int, trackNumber: Int, param1: Int, param2: Int, location: Long) = {
+  private def addMidiEvent(track: Track, midiCommand: Int, trackNumber: Int, param1: Int, param2: Int, location: Long) = {
     val message = new ShortMessage()
     try {
       message.setMessage(midiCommand,

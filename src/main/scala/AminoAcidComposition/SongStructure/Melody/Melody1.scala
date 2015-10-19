@@ -13,9 +13,9 @@ object Melody1 extends MelodyTrait{
   def getTrack(rootNote:Int, altTrack:Boolean = false, firstChord:Boolean = true) = {
     for(n<-notes) yield {
       if(!altTrack) {
-        Note(melodyTrackNumber, n._1, velocity, n._2, quarter)
+        Note(mc.melodyTrack, trackNumber, n._1, velocity, n._2, quarter)
       }else{
-        Note(altMelodyTrackNumber, n._1, velocity, n._2, quarter)
+        Note(mc.altMelodyTrack, altTrackNumber, n._1, velocity, n._2, quarter)
       }
     }
   }
