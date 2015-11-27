@@ -37,6 +37,10 @@ object MusicCommon extends MusicCommon{
   val altBassTrack = sequence.createTrack()
   val drumTrack = sequence.createTrack()
   val altDrumTrack = sequence.createTrack()
+//  val altRhythmGuitarTrack = sequence.createTrack()
+//  val altMelodyTrack = sequence.createTrack()
+//  val altBassTrack = sequence.createTrack()
+//  val altDrumTrack = sequence.createTrack()
 
   private val inst = MidiSystem.getSynthesizer.getDefaultSoundbank.getInstruments
 
@@ -71,7 +75,11 @@ object MusicCommon extends MusicCommon{
 
   def writeMidi(file:String) = {
     val outputFile = new File(file)
-    MidiSystem.write(sequence, 0, outputFile)
+    if(outputFile.exists()){
+      outputFile.delete()
+      outputFile.createNewFile()
+    }
+    MidiSystem.write(sequence, 1, outputFile)
   }
 
   def playMidi(bpm:Float) = {
@@ -83,13 +91,24 @@ object MusicCommon extends MusicCommon{
   }
 
   def stopMidi() = {
-    sequencer.stop()
-    sequencer.close()
-    for(track <- Seq(rhythmGuitarTrack,altRhythmGuitarTrack,melodyTrack,altMelodyTrack,bassTrack,altBassTrack,drumTrack,altDrumTrack)) {
+    val location = try {
+      val current = sequencer.getTickPosition
+      sequencer.stop()
+      sequencer.close()
+      current
+    }catch{
+      case _ => 0
+    }
+    for (track <- Seq(rhythmGuitarTrack, altRhythmGuitarTrack, melodyTrack, altMelodyTrack, bassTrack, altBassTrack, drumTrack, altDrumTrack)) {
       while (track.size() != 0) {
         track.remove(track.get(0))
       }
     }
+    location
+  }
+
+  def setLocation(location:Long) = {
+    sequencer.setTickPosition(location)
   }
 
   //param1 and param2 are poorly named, they are respectively

@@ -37,29 +37,32 @@ object MidiInterface extends MusicCommon {
   val altDrumTrack = mc.altDrumTrack
 
   def createMidi(sequence1:String, sequence2:String) = {
-    for (i <- Range(0, sequence1.length)) {
-      val aminoAcid = {
-        val objectName = "AminoAcidComposition.AminoAcid." + sequence1.charAt(i) + "$"
-        val cons = Class.forName(objectName).getDeclaredConstructors
-        cons(0).setAccessible(true)
-        cons(0).newInstance().asInstanceOf[AminoAcidAbstract]
-      }
-      aminoAcid.addTracks(measure*i)
+    if (!sequence1.isEmpty) {
+      _createMidi(sequence1)
+    }
+    if (!sequence2.isEmpty) {
+      _createMidi(sequence2, true)
     }
 
-    for (i <- Range(0, sequence2.length)) {
-      val aminoAcid = {
-        val objectName = "AminoAcidComposition.AminoAcid." + sequence2.charAt(i) + "$"
-        val cons = Class.forName(objectName).getDeclaredConstructors
-        cons(0).setAccessible(true)
-        cons(0).newInstance().asInstanceOf[AminoAcidAbstract]
+    def _createMidi(seq:String, alt:Boolean = false) = {
+      for (i <- seq.indices) {
+        val aminoAcid = {
+          val objectName = "AminoAcidComposition.AminoAcid." + seq.charAt(i) + "$"
+          val cons = Class.forName(objectName).getDeclaredConstructors
+          cons(0).setAccessible(true)
+          cons(0).newInstance().asInstanceOf[AminoAcidAbstract]
+        }
+        aminoAcid.addTracks(measure * i, alt)
       }
-      aminoAcid.addTracks(measure * i, true)
     }
   }
 
   def playMidi(bpm:Int = 120) = {
     mc.playMidi(bpm)
+  }
+
+  def setLocation(location:Long) = {
+    mc.setLocation(location)
   }
 
   def stopMidi() = {
@@ -80,5 +83,9 @@ object MidiInterface extends MusicCommon {
 
   def soloTrack(trackIndex:Int) = {
     mc.soloTrack(trackIndex)
+  }
+
+  def writeMidi(filename:String) = {
+    mc.writeMidi(filename)
   }
 }
