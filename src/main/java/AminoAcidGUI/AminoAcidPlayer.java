@@ -3,8 +3,10 @@ package AminoAcidGUI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import AminoAcidComposition.MidiInterface$;
 
@@ -12,6 +14,9 @@ public class AminoAcidPlayer extends JFrame {
     private MidiInterface$ mi = MidiInterface$.MODULE$;
     private Boolean trackPresent = false;
     private Boolean paused = false;
+    private long pauseLocation = 0;
+    private Timer updateSelection;
+    private int currentAcid = 0;
 
     private JTextField firstAminoAcid;
     private JTextField secondAminoAcid;
@@ -44,7 +49,15 @@ public class AminoAcidPlayer extends JFrame {
     private JButton saveButton;
     private JButton saveAsButton;
     private JButton convertButton;
-    private long pauseLocation = 0;
+    private JComboBox FirstAminoAcidDropDown;
+    private JComboBox SecondAminoAcidDropDown;
+    private JPanel SequencePanel;
+    private JPanel PlayControlPanel;
+    private JPanel SaveControlPanel;
+    private JPanel InstrumentControlPanel;
+    private JPanel TrackControlPanel;
+
+    LinkedHashMap<String, String> acids = new LinkedHashMap<>();
 
     private void createTrack() {
         mi.stopMidi();
@@ -58,30 +71,101 @@ public class AminoAcidPlayer extends JFrame {
     }
 
     public AminoAcidPlayer() {
+        acids.put("None","");
+        acids.put("HBB",              "MVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH");
+        acids.put("HBB S (Sickle Cell Anemia)",  "MVHLTPVEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH");
+        acids.put("HBB C",            "MVHLTPKEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH");
+        acids.put("HBB E",             "MVHLTPEEKSAVTALWGKVNVDEVGGKALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH");
+        acids.put("HBA1 Human",             "MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR");
+        acids.put("DPH6 Human",             "MRVAALISGGKDSCYNMMQCIAAGHQIVALANLRPAENQVGSDELDSYMYQTVGHHAIDLYAEAMALPLYRRTIRGRSLDTRQVYTKCEGDEVEDLYELLKLVKEKEEVEGISVGAILSDYQRIRVENVCKRLNLQPLAYLWQRNQEDLLREMISSNIQAMIIKVAALGLDPDKHLGKTLDQMEPYLIELSKKYGVHVCGEGGEYETFTLDCPLFKKKIIVDSSEVVIHSADAFAPVAYLRFLELHLEDKVSSVPDNYRTSNYIYNF");
+        acids.put("DPH6 Mouse",             "MRVAALISGGKDSCYNMMQCIAEGHQIVALANLRPDENQVESDELDSYMYQTVGHHAIDLYAEAMALPLYRRAIRGRSLETGRVYTQCEGDEVEDLYELLKLVKEKEEIEGVSVGAILSDYQRGRVENVCKRLNLQPLAYLWQRNQEDLLREMIASNIKAIIIKVAALGLDPDKHLGKTLVEMEPYLLELSKKYGVHVCGEGGEYETFTLDCPLFKKKIVVDSSEAVMHSADAFAPVAYLRLSRLHLEEKVSSVPADDETANSIHSS");
+        acids.put("DPH6 Rat",               "MRVAALISGGKDSCYNMMRCIAEGHQIVALANLRPDDNQVESDELDSYMYQTVGHHAIDLYAEAMALPLYRRTIRGRSLETGRVYTRCEGDEVEDLYELLKLVKEKEEIEGVSVGAILSDYQRVRVENVCKRLNLQPLAYLWQRNQEDLLREMIASNIEAIIIKVAALGLDPDKHLGKTLGEMEPYLLELSKKYGVHVCGEGGEYETFTLDCPLFKKKIVVDTSEAVIHSADAFAPVAYLRLSGLHLEEKVSSVPGDDETTSYIHNS");
+        acids.put("DPH6 ZebraFish",         "MRVVGLISGGKDSCFNMLQCVSAGHSIVALANLRPADHAASDELDSYMYQTVGHQAVDLIAEAMGLPLYRRTIEGSSVHIDREYSPTDGDEVEDLYQLLKHVKEEMHVDGVSVGAILSDYQRVRVENVCARLQLQPLAYLWRRDQAALLSEMISSGLHAILIKVAAFGLHPDKHLGKSLAEMELYLHELSEKYGVHICGEGGEYETFTLDCPLFKKKIIIDATETVIHSDDAFAPVGFLRFTKMHTEDKTEGSGGPPPPSLSACPCQSAIDRMTEELEYADKTADVQRECPSHTQSTWQLDEGCEVSHSSSSSGFQWISGLSALPSEHPDIQSQAQHVFTLLQSRLQEMGSALRHVLLVHLYVSSMQDFGLINSIYSRLFTHNPPARVCVQASLPVGQQLQMDVLLQDQTKASPSSSSSVCEEECFPQRETLHVQSVSHWAPANIGPYSQATQVQLCFLLTAAASAVFSTVFYISTSAAQWLSGQHCGFTARRSLV");
+        acids.put("DPH6 D. melanogaster",   "MRVVAMVSGGKDSCYNMMQCVAEGHEIVALANLHPKDRDELDSFMYQTVGHMGIEILASAMGLPLYRRETKGKSTQTGKQYVPTDDDEVEDLYSLLETCKHELQVDAVAVGAILSDYQRVRVENVCSRLNLISLAYLWRRDQTELLQEMIDCQVHAIIIKVAALGLVPDRHLGKSLREMQPHLLKMRDKYGLNVCGEGGEYETFTLDCPLFRQRIVVEDIQTIISSADPICPVGYINFTKLTLQPKEAAGAASSGGNEVVFVKRSLDYISDLNESTYSDLSDPDFSETELELIEKETRLRESLSQSELISRSNSFGRHLAATASSPIPIVTKSASVDEPTAAAAPILGGVGGPPICSTSACASMLLTTTADGLSSLASSQSQGGGHGLGSSTAAVCGSLSLAISSLGLSANTCCHPGGAGGGGGVGIGVGAGAGAGAPSATTQPPSPLKYEREFRPLANEARAAINAKGWMWLAGIQGSGTEGIEQGMQQALDTLRDLCQAKGYDLQDLCYVTLYVRSIGEYPLLNRVYHRAFDFHNPPTRVCVECPLPDGCHVVMEAIAYRQPVAGTISSAEERDREGEETAAALLNGRRNTMHVQGISHWAPANIGPYSQSTRIGDITYISGQIALVPGSMTIIEGGIRPQCKLTLRHISRIAKAMNAHGQLRDVVHGICFVTHPAFIGEARRQWERRTTNAIMDYIVLPALPREALVEWQVWAHTHNDRFDYEETGCSVGDYTISIRRRWNYENNCAAIVCYVSTGLASSTTQLTQLSDDILGNHCRLAQAVNAEHLDEIFTYVVNRLLKDYPLAKKQASQPTNSATPPATPTQPGGAGGDQQQPVPAIHLKLFYQVNAAPATDLLLQALHDFRLKCQDTAAIVYTVLPACSLHNFSTFLSICGVRHE");
+        acids.put("DPH6 C. elegans", "MQVVGLISGGKDSCYNLMCAVREGHQIVALANLHPPKDAKSDELDSYMYQSVGADGVELYGEAMQLPLYRREITGEPKNQKSDYEKTDGDEVEDLFELLCEVKKHHPEVKGVSAGAILSSYQKVRVEDICRRLDLVPLCFLWEREQNGLLAEMVENGLDAILIKVAAIGLGEQHLGKTLSEMAPIMKVLQDKYGVHPCGEGGEFESFVRDCPLFKKRIVIDETETVTHQDDPIAPVFYLRLKKMHLEDK");
+        acids.put("DPH6 S. cerevisiae", "MKFIALISGGKDSFYNIFHCLKNNHELIALGNIYPKESEEQELDSFMFQTVGHDLIDYYSKCIGVPLFRRSILRNTSNNVELNYTATQDDEIEELFELLRTVKDKIPDLEAVSVGAILSSYQRTRVENVCSRLGLVVLSYLWQRDQAELMGEMCLMSKDVNNVENDTNSGNKFDARIIKVAAIGLNEKHLGMSLPMMQPVLQKLNQLYQVHICGEGGEFETMVLDAPFFQHGYLELIDIVKCSDGEVHNARLKVKFQPRNLSKSFLLNQLDQLPVPSIFGNNWQDLTQNLPKQQAKTGEQRFENHMSNALPQTTINKTNDKLYISNLQSRKSETVEKQSEDIFTELADILHSNQIPRNHILSASLLIRDMSNFGKINKIYNEFLDLSKYGPLPPSRACVGSKCLPEDCHVQLSVVVDVKNTGKEKINKNKGGLHVQGRSYWAPCNIGPYSQSTWLNDDANQVSFISGQIGLVPQSMEILGTPLTDQIVLALQHFDTLCETIGAQEKLLMTCYISDESVLDSVIKTWAFYCSNMNHRSDLWMDKSDDVEKCLVLVKISELPRGAVAEFGGVTCKRLIVDDNDSDKKEREENDDVSTVFQKLNLNIEGFHNTTVSAFGYNRNFITGFVDSREELELILEKTPKSAQITLYYNPKEIITFHHHIGYYPVEKLFDYRGKEHRFGLHIRS");
+
+
         createUIComponents();
 
+        for(String acid: acids.keySet()){
+            FirstAminoAcidDropDown.addItem(acid);
+            SecondAminoAcidDropDown.addItem(acid);
+        }
+
+        FirstAminoAcidDropDown.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                firstAminoAcid.setText(acids.get(FirstAminoAcidDropDown.getSelectedItem()));
+                firstAminoAcid.setCaretPosition(0);
+                firstAminoAcid.requestFocus();
+            }
+        });
+
+        SecondAminoAcidDropDown.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                secondAminoAcid.setText(acids.get(SecondAminoAcidDropDown.getSelectedItem()));
+                secondAminoAcid.setCaretPosition(0);
+                secondAminoAcid.requestFocus();
+            }
+        });
+
         playButton.addActionListener(new ActionListener() {
+//            removed pause stuff
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!trackPresent) {
+
                     createTrack();
                     mi.playMidi(120);
-                    paused = false;
+//                    paused = false;
                     trackPresent = true;
-                    playButton.setText("pause");
+//                    playButton.setText("pause");
                     pauseLocation=0;
-                } else if(paused){
-                    createTrack();
-                    mi.playMidi(120);
-                    mi.setLocation(pauseLocation);
-                    paused = false;
-                    playButton.setText("pause");
-                    pauseLocation=0;
-                }else{
-                    pauseLocation = mi.stopMidi();
-                    paused = true;
-                    playButton.setText("play");
+                    firstAminoAcid.requestFocus();
+                    updateSelection = new Timer();
+                    updateSelection.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            if (currentAcid>=firstAminoAcid.getText().length() &&
+                                    currentAcid>=secondAminoAcid.getText().length()){
+                                updateSelection.cancel();
+                                currentAcid=-1;
+                            }
+                            if(currentAcid<firstAminoAcid.getText().length()) {
+                                try {
+                                    firstAminoAcid.setCaretPosition(currentAcid + 22);
+                                }catch(IllegalArgumentException e){}
+                                firstAminoAcid.setSelectionStart(currentAcid);
+                                firstAminoAcid.setSelectionEnd(currentAcid + 1);
+                            }
+
+                            if(currentAcid<secondAminoAcid.getText().length()){
+                                try{
+                                    secondAminoAcid.setCaretPosition(currentAcid + 22);
+                                }catch(IllegalArgumentException e){}
+                                secondAminoAcid.setSelectionStart(currentAcid);
+                                secondAminoAcid.setSelectionEnd(currentAcid+1);
+                            }
+                            currentAcid++;
+                        }
+                    }, 0, 2000);
                 }
+//                else if(paused){
+//                    createTrack();
+//                    mi.setLocation(pauseLocation);
+//                    mi.playMidi(120);
+//                    paused = false;
+//                    playButton.setText("pause");
+//                    pauseLocation=0;
+//                }else{
+//                    pauseLocation = mi.stopMidi();
+//                    paused = true;
+////                    playButton.setText("play");
+//                }
+                firstAminoAcid.setEditable(false);
+                secondAminoAcid.setEditable(false);
             }
         });
 
@@ -93,6 +177,10 @@ public class AminoAcidPlayer extends JFrame {
                 paused = false;
                 playButton.setText("play");
                 trackPresent = false;
+                updateSelection.cancel();
+                currentAcid = 0;
+                firstAminoAcid.setEditable(true);
+                secondAminoAcid.setEditable(true);
             }
         });
 
@@ -268,6 +356,7 @@ public class AminoAcidPlayer extends JFrame {
 
             }
         });
+
     }
 
     public static void main(String[] args) {
@@ -288,8 +377,9 @@ public class AminoAcidPlayer extends JFrame {
             SecondBassDropDown.addItem(instrument);
         }
 
-        FirstMelodyDropDown.setSelectedIndex(18);
-        SecondMelodyDropDown.setSelectedIndex(20);
+
+        FirstMelodyDropDown.setSelectedIndex(48);
+        SecondMelodyDropDown.setSelectedIndex(4);
         FirstRhythmDropDown.setSelectedIndex(24);
         SecondRhythmDropDown.setSelectedIndex(0);
         FirstBassDropDown.setSelectedIndex(33);

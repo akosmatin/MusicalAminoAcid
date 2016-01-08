@@ -37,10 +37,6 @@ object MusicCommon extends MusicCommon{
   val altBassTrack = sequence.createTrack()
   val drumTrack = sequence.createTrack()
   val altDrumTrack = sequence.createTrack()
-//  val altRhythmGuitarTrack = sequence.createTrack()
-//  val altMelodyTrack = sequence.createTrack()
-//  val altBassTrack = sequence.createTrack()
-//  val altDrumTrack = sequence.createTrack()
 
   private val inst = MidiSystem.getSynthesizer.getDefaultSoundbank.getInstruments
 
@@ -86,7 +82,7 @@ object MusicCommon extends MusicCommon{
     sequencer.open()
     sequencer.setSequence(sequence)
     sequencer.setTempoInBPM(bpm)
-    sequencer.setTrackMute(9, false)
+//    sequencer.setTrackMute(9, false)
     sequencer.start()
   }
 
@@ -97,7 +93,7 @@ object MusicCommon extends MusicCommon{
       sequencer.close()
       current
     }catch{
-      case _ => 0
+      case _:Throwable => 0
     }
     for (track <- Seq(rhythmGuitarTrack, altRhythmGuitarTrack, melodyTrack, altMelodyTrack, bassTrack, altBassTrack, drumTrack, altDrumTrack)) {
       while (track.size() != 0) {

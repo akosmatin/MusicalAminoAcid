@@ -15,7 +15,7 @@ object Melody1 extends MelodyTrait{
       if(!altTrack) {
         Note(mc.melodyTrack, trackNumber, n._1, velocity, n._2, quarter)
       }else{
-        Note(mc.altMelodyTrack, altTrackNumber, n._1, velocity, n._2, quarter)
+        Note(mc.altMelodyTrack, altTrackNumber, n._1, velocity + 5, n._2, quarter)
       }
     }
   }

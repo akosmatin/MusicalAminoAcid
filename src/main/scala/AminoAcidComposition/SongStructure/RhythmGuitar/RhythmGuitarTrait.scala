@@ -16,11 +16,9 @@ trait RhythmGuitarTrait extends Instrument with MusicCommon {
   protected def downStrokeCurry(chord: Seq[Int])(start: Int, duration: Int, velocity: Int) = {
     for (i <- chord.indices) yield {
       if (i == chord.length - 1) {
-//        (start + i, duration - i, chord(i), (velocity * 1.1).toInt)
-        (start, duration, chord(i), (velocity * 1.1).toInt)
+        (start + i, duration - i, chord(i), (velocity * 1.1).toInt)
       } else {
-        (start, duration, chord(i), velocity)
-//        (start + i, duration - i, chord(i), velocity)
+        (start + i, duration - i, chord(i), velocity)
       }
     }
   }
@@ -28,12 +26,9 @@ trait RhythmGuitarTrait extends Instrument with MusicCommon {
   protected def upStrokeCurry(chord: Seq[Int])(start: Int, duration: Int, velocity: Int) = {
     for (i <- chord.indices) yield {
       if (i == 0) {
-        //this is wrong, duration should be changed too
-//        (start + i, duration, chord(chord.length - 1 - i), (velocity * 1.1).toInt)
-        (start, duration, chord(chord.length - 1 - i), (velocity * 1.1).toInt)
+        (start + i, duration - i, chord(chord.length - 1 - i), (velocity * 1.1).toInt)
       } else {
-
-        (start, duration, chord(chord.length - 1 - i), velocity)
+        (start + i, duration - i, chord(chord.length - 1 - i), velocity)
       }
     }
   }
