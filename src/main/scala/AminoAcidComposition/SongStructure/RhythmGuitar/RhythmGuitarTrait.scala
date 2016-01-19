@@ -3,8 +3,8 @@ package AminoAcidComposition.SongStructure.RhythmGuitar
 import AminoAcidComposition.SongStructure.{Instrument, MusicCommon}
 
 trait RhythmGuitarTrait extends Instrument with MusicCommon {
-  protected val trackNumber = 0
-  protected val altTrackNumber = 1
+  protected val trackNumber = mc.rhythmGuitarTrackIndex
+  protected val altTrackNumber = mc.altRhythmGuitarTrackIndex
   protected val velocity = 70
   protected val altVelocity = 70
 

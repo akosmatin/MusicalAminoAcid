@@ -1,8 +1,7 @@
 package AminoAcidGUI;
 
+import javax.sound.midi.Track;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Timer;
@@ -38,53 +37,67 @@ public class AminoAcidPlayer extends JFrame {
     private JToggleButton SecondBassSoloButton;
     private JToggleButton SecondDrumMuteButton;
     private JToggleButton SecondDrumSoloButton;
-    private JComboBox FirstMelodyDropDown;
-    private JComboBox FirstRhythmDropDown;
-    private JComboBox FirstBassDropDown;
-    private JComboBox SecondMelodyDropDown;
-    private JComboBox SecondRhythmDropDown;
-    private JComboBox SecondBassDropDown;
+    private JComboBox<String> FirstMelodyDropDown;
+    private JComboBox<String> FirstRhythmDropDown;
+    private JComboBox<String> FirstBassDropDown;
+    private JComboBox<String> SecondMelodyDropDown;
+    private JComboBox<String> SecondRhythmDropDown;
+    private JComboBox<String> SecondBassDropDown;
     private JPanel aminoAcidPlayerPanel;
     private JTextField saveField;
     private JButton saveButton;
     private JButton saveAsButton;
     private JButton convertButton;
-    private JComboBox FirstAminoAcidDropDown;
-    private JComboBox SecondAminoAcidDropDown;
+    private JComboBox<String> FirstAminoAcidDropDown;
+    private JComboBox<String> SecondAminoAcidDropDown;
     private JPanel SequencePanel;
     private JPanel PlayControlPanel;
     private JPanel SaveControlPanel;
     private JPanel InstrumentControlPanel;
     private JPanel TrackControlPanel;
 
-    LinkedHashMap<String, String> acids = new LinkedHashMap<>();
+
+    private LinkedHashMap<String, String> acids = Acids.getInstance().getAcids();
+    private DropDown[] dropDowns = new DropDown[6];
 
     private void createTrack() {
         mi.stopMidi();
         mi.createMidi(firstAminoAcid.getText(), secondAminoAcid.getText());
-        mi.setInstrument(mi.rhythmGuitarTrack(),0,FirstRhythmDropDown.getSelectedIndex());
-        mi.setInstrument(mi.melodyTrack(), 2,FirstMelodyDropDown.getSelectedIndex());
-        mi.setInstrument(mi.bassTrack(), 4,FirstBassDropDown.getSelectedIndex());
-        mi.setInstrument(mi.altRhythmGuitarTrack(),1,SecondRhythmDropDown.getSelectedIndex());
-        mi.setInstrument(mi.altMelodyTrack(),3, SecondMelodyDropDown.getSelectedIndex());
-        mi.setInstrument(mi.altBassTrack(), 5, SecondBassDropDown.getSelectedIndex());
+        for(DropDown dd: dropDowns){
+            mi.setInstrument(dd.getTrack(), dd.getTrackIndex(), dd.getComboBox().getSelectedIndex());
+        }
     }
 
     public AminoAcidPlayer() {
-        acids.put("None","");
-        acids.put("HBB",              "MVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH");
-        acids.put("HBB S (Sickle Cell Anemia)",  "MVHLTPVEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH");
-        acids.put("HBB C",            "MVHLTPKEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH");
-        acids.put("HBB E",             "MVHLTPEEKSAVTALWGKVNVDEVGGKALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH");
-        acids.put("HBA1 Human",             "MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR");
-        acids.put("DPH6 Human",             "MRVAALISGGKDSCYNMMQCIAAGHQIVALANLRPAENQVGSDELDSYMYQTVGHHAIDLYAEAMALPLYRRTIRGRSLDTRQVYTKCEGDEVEDLYELLKLVKEKEEVEGISVGAILSDYQRIRVENVCKRLNLQPLAYLWQRNQEDLLREMISSNIQAMIIKVAALGLDPDKHLGKTLDQMEPYLIELSKKYGVHVCGEGGEYETFTLDCPLFKKKIIVDSSEVVIHSADAFAPVAYLRFLELHLEDKVSSVPDNYRTSNYIYNF");
-        acids.put("DPH6 Mouse",             "MRVAALISGGKDSCYNMMQCIAEGHQIVALANLRPDENQVESDELDSYMYQTVGHHAIDLYAEAMALPLYRRAIRGRSLETGRVYTQCEGDEVEDLYELLKLVKEKEEIEGVSVGAILSDYQRGRVENVCKRLNLQPLAYLWQRNQEDLLREMIASNIKAIIIKVAALGLDPDKHLGKTLVEMEPYLLELSKKYGVHVCGEGGEYETFTLDCPLFKKKIVVDSSEAVMHSADAFAPVAYLRLSRLHLEEKVSSVPADDETANSIHSS");
-        acids.put("DPH6 Rat",               "MRVAALISGGKDSCYNMMRCIAEGHQIVALANLRPDDNQVESDELDSYMYQTVGHHAIDLYAEAMALPLYRRTIRGRSLETGRVYTRCEGDEVEDLYELLKLVKEKEEIEGVSVGAILSDYQRVRVENVCKRLNLQPLAYLWQRNQEDLLREMIASNIEAIIIKVAALGLDPDKHLGKTLGEMEPYLLELSKKYGVHVCGEGGEYETFTLDCPLFKKKIVVDTSEAVIHSADAFAPVAYLRLSGLHLEEKVSSVPGDDETTSYIHNS");
-        acids.put("DPH6 ZebraFish",         "MRVVGLISGGKDSCFNMLQCVSAGHSIVALANLRPADHAASDELDSYMYQTVGHQAVDLIAEAMGLPLYRRTIEGSSVHIDREYSPTDGDEVEDLYQLLKHVKEEMHVDGVSVGAILSDYQRVRVENVCARLQLQPLAYLWRRDQAALLSEMISSGLHAILIKVAAFGLHPDKHLGKSLAEMELYLHELSEKYGVHICGEGGEYETFTLDCPLFKKKIIIDATETVIHSDDAFAPVGFLRFTKMHTEDKTEGSGGPPPPSLSACPCQSAIDRMTEELEYADKTADVQRECPSHTQSTWQLDEGCEVSHSSSSSGFQWISGLSALPSEHPDIQSQAQHVFTLLQSRLQEMGSALRHVLLVHLYVSSMQDFGLINSIYSRLFTHNPPARVCVQASLPVGQQLQMDVLLQDQTKASPSSSSSVCEEECFPQRETLHVQSVSHWAPANIGPYSQATQVQLCFLLTAAASAVFSTVFYISTSAAQWLSGQHCGFTARRSLV");
-        acids.put("DPH6 D. melanogaster",   "MRVVAMVSGGKDSCYNMMQCVAEGHEIVALANLHPKDRDELDSFMYQTVGHMGIEILASAMGLPLYRRETKGKSTQTGKQYVPTDDDEVEDLYSLLETCKHELQVDAVAVGAILSDYQRVRVENVCSRLNLISLAYLWRRDQTELLQEMIDCQVHAIIIKVAALGLVPDRHLGKSLREMQPHLLKMRDKYGLNVCGEGGEYETFTLDCPLFRQRIVVEDIQTIISSADPICPVGYINFTKLTLQPKEAAGAASSGGNEVVFVKRSLDYISDLNESTYSDLSDPDFSETELELIEKETRLRESLSQSELISRSNSFGRHLAATASSPIPIVTKSASVDEPTAAAAPILGGVGGPPICSTSACASMLLTTTADGLSSLASSQSQGGGHGLGSSTAAVCGSLSLAISSLGLSANTCCHPGGAGGGGGVGIGVGAGAGAGAPSATTQPPSPLKYEREFRPLANEARAAINAKGWMWLAGIQGSGTEGIEQGMQQALDTLRDLCQAKGYDLQDLCYVTLYVRSIGEYPLLNRVYHRAFDFHNPPTRVCVECPLPDGCHVVMEAIAYRQPVAGTISSAEERDREGEETAAALLNGRRNTMHVQGISHWAPANIGPYSQSTRIGDITYISGQIALVPGSMTIIEGGIRPQCKLTLRHISRIAKAMNAHGQLRDVVHGICFVTHPAFIGEARRQWERRTTNAIMDYIVLPALPREALVEWQVWAHTHNDRFDYEETGCSVGDYTISIRRRWNYENNCAAIVCYVSTGLASSTTQLTQLSDDILGNHCRLAQAVNAEHLDEIFTYVVNRLLKDYPLAKKQASQPTNSATPPATPTQPGGAGGDQQQPVPAIHLKLFYQVNAAPATDLLLQALHDFRLKCQDTAAIVYTVLPACSLHNFSTFLSICGVRHE");
-        acids.put("DPH6 C. elegans", "MQVVGLISGGKDSCYNLMCAVREGHQIVALANLHPPKDAKSDELDSYMYQSVGADGVELYGEAMQLPLYRREITGEPKNQKSDYEKTDGDEVEDLFELLCEVKKHHPEVKGVSAGAILSSYQKVRVEDICRRLDLVPLCFLWEREQNGLLAEMVENGLDAILIKVAAIGLGEQHLGKTLSEMAPIMKVLQDKYGVHPCGEGGEFESFVRDCPLFKKRIVIDETETVTHQDDPIAPVFYLRLKKMHLEDK");
-        acids.put("DPH6 S. cerevisiae", "MKFIALISGGKDSFYNIFHCLKNNHELIALGNIYPKESEEQELDSFMFQTVGHDLIDYYSKCIGVPLFRRSILRNTSNNVELNYTATQDDEIEELFELLRTVKDKIPDLEAVSVGAILSSYQRTRVENVCSRLGLVVLSYLWQRDQAELMGEMCLMSKDVNNVENDTNSGNKFDARIIKVAAIGLNEKHLGMSLPMMQPVLQKLNQLYQVHICGEGGEFETMVLDAPFFQHGYLELIDIVKCSDGEVHNARLKVKFQPRNLSKSFLLNQLDQLPVPSIFGNNWQDLTQNLPKQQAKTGEQRFENHMSNALPQTTINKTNDKLYISNLQSRKSETVEKQSEDIFTELADILHSNQIPRNHILSASLLIRDMSNFGKINKIYNEFLDLSKYGPLPPSRACVGSKCLPEDCHVQLSVVVDVKNTGKEKINKNKGGLHVQGRSYWAPCNIGPYSQSTWLNDDANQVSFISGQIGLVPQSMEILGTPLTDQIVLALQHFDTLCETIGAQEKLLMTCYISDESVLDSVIKTWAFYCSNMNHRSDLWMDKSDDVEKCLVLVKISELPRGAVAEFGGVTCKRLIVDDNDSDKKEREENDDVSTVFQKLNLNIEGFHNTTVSAFGYNRNFITGFVDSREELELILEKTPKSAQITLYYNPKEIITFHHHIGYYPVEKLFDYRGKEHRFGLHIRS");
+        dropDowns[0] = new DropDown(mi.rhythmGuitarTrack(), mi.rhythmGuitarTrackIndex(), FirstRhythmDropDown, 24);
+        dropDowns[1] = new DropDown(mi.melodyTrack(), mi.melodyTrackIndex(),FirstMelodyDropDown, 48);
+        dropDowns[2] = new DropDown(mi.bassTrack(), mi.bassTrackIndex(),FirstBassDropDown, 35);
+        dropDowns[3] = new DropDown(mi.altRhythmGuitarTrack(), mi.altRhythmGuitarTrackIndex(), SecondRhythmDropDown, 0);
+        dropDowns[4] = new DropDown(mi.altMelodyTrack(), mi.altMelodyTrackIndex(), SecondMelodyDropDown, 4);
+        dropDowns[5] = new DropDown(mi.altBassTrack(), mi.altBassTrackIndex(), SecondBassDropDown, 35);
 
+
+        Button[] soloButtons = {
+                new Button(mi.melodyTrackIndex(), FirstMelodySoloButton),
+                new Button(mi.rhythmGuitarTrackIndex(), FirstRhythmSoloButton),
+                new Button(mi.bassTrackIndex(), FirstBassSoloButton),
+                new Button(mi.drumTrackIndex(), FirstDrumSoloButton),
+                new Button(mi.altMelodyTrackIndex(), SecondMelodySoloButton),
+                new Button(mi.altRhythmGuitarTrackIndex(), SecondRhythmSoloButton),
+                new Button(mi.altBassTrackIndex(), SecondBassSoloButton),
+                new Button(mi.altDrumTrackIndex(), SecondDrumSoloButton)
+        };
+
+        Button[] muteButtons = {
+                new Button(mi.melodyTrackIndex(), FirstMelodyMuteButton),
+                new Button(mi.rhythmGuitarTrackIndex(), FirstRhythmMuteButton),
+                new Button(mi.bassTrackIndex(), FirstBassMuteButton),
+                new Button(mi.drumTrackIndex(), FirstDrumMuteButton),
+                new Button(mi.altMelodyTrackIndex(), SecondMelodyMuteButton),
+                new Button(mi.altRhythmGuitarTrackIndex(), SecondRhythmMuteButton),
+                new Button(mi.altBassTrackIndex(), SecondBassMuteButton),
+                new Button(mi.altDrumTrackIndex(), SecondDrumMuteButton)
+        };
 
         createUIComponents();
 
@@ -93,65 +106,48 @@ public class AminoAcidPlayer extends JFrame {
             SecondAminoAcidDropDown.addItem(acid);
         }
 
-        FirstAminoAcidDropDown.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                firstAminoAcid.setText(acids.get(FirstAminoAcidDropDown.getSelectedItem()));
-                firstAminoAcid.setCaretPosition(0);
-                firstAminoAcid.requestFocus();
-            }
+        FirstAminoAcidDropDown.addActionListener(e -> {
+            firstAminoAcid.setText(acids.get(FirstAminoAcidDropDown.getSelectedItem()));
+            firstAminoAcid.setCaretPosition(0);
         });
 
-        SecondAminoAcidDropDown.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                secondAminoAcid.setText(acids.get(SecondAminoAcidDropDown.getSelectedItem()));
-                secondAminoAcid.setCaretPosition(0);
-                secondAminoAcid.requestFocus();
-            }
+        SecondAminoAcidDropDown.addActionListener(e -> {
+            secondAminoAcid.setText(acids.get(SecondAminoAcidDropDown.getSelectedItem()));
+            secondAminoAcid.setCaretPosition(0);
         });
 
-        playButton.addActionListener(new ActionListener() {
-//            removed pause stuff
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (!trackPresent) {
+        playButton.addActionListener(e -> {
+            if (!trackPresent) {
 
-                    createTrack();
-                    mi.playMidi(120);
+                createTrack();
+                mi.playMidi(120);
 //                    paused = false;
-                    trackPresent = true;
+                trackPresent = true;
 //                    playButton.setText("pause");
-                    pauseLocation=0;
-                    firstAminoAcid.requestFocus();
-                    updateSelection = new Timer();
-                    updateSelection.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            if (currentAcid>=firstAminoAcid.getText().length() &&
-                                    currentAcid>=secondAminoAcid.getText().length()){
-                                updateSelection.cancel();
-                                currentAcid=-1;
-                            }
-                            if(currentAcid<firstAminoAcid.getText().length()) {
-                                try {
-                                    firstAminoAcid.setCaretPosition(currentAcid + 22);
-                                }catch(IllegalArgumentException e){}
-                                firstAminoAcid.setSelectionStart(currentAcid);
-                                firstAminoAcid.setSelectionEnd(currentAcid + 1);
-                            }
-
-                            if(currentAcid<secondAminoAcid.getText().length()){
-                                try{
-                                    secondAminoAcid.setCaretPosition(currentAcid + 22);
-                                }catch(IllegalArgumentException e){}
-                                secondAminoAcid.setSelectionStart(currentAcid);
-                                secondAminoAcid.setSelectionEnd(currentAcid+1);
-                            }
-                            currentAcid++;
+                pauseLocation=0;
+                firstAminoAcid.requestFocus();
+                updateSelection = new Timer();
+                updateSelection.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (currentAcid>=firstAminoAcid.getText().length() &&
+                                currentAcid>=secondAminoAcid.getText().length()){
+                            updateSelection.cancel();
+                            currentAcid=-1;
                         }
-                    }, 0, 2000);
-                }
+                        firstAminoAcid.setScrollOffset((currentAcid-32)*8);
+                        secondAminoAcid.setScrollOffset((currentAcid-32)*8);
+                        if(firstAminoAcid.hasFocus()) {
+                            highlightCurrentAcid(secondAminoAcid, currentAcid);
+                            highlightCurrentAcid(firstAminoAcid, currentAcid);
+                        }else if(secondAminoAcid.hasFocus()) {
+                            highlightCurrentAcid(firstAminoAcid, currentAcid);
+                            highlightCurrentAcid(secondAminoAcid, currentAcid);
+                        }
+                        currentAcid++;
+                    }
+                }, 0, 2000);
+            }
 //                else if(paused){
 //                    createTrack();
 //                    mi.setLocation(pauseLocation);
@@ -164,225 +160,83 @@ public class AminoAcidPlayer extends JFrame {
 //                    paused = true;
 ////                    playButton.setText("play");
 //                }
-                firstAminoAcid.setEditable(false);
-                secondAminoAcid.setEditable(false);
-            }
         });
 
 
-        stopButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.stopMidi();
-                paused = false;
-                playButton.setText("play");
-                trackPresent = false;
-                updateSelection.cancel();
-                currentAcid = 0;
-                firstAminoAcid.setEditable(true);
-                secondAminoAcid.setEditable(true);
-            }
+        stopButton.addActionListener(e -> {
+            mi.stopMidi();
+            paused = false;
+            playButton.setText("play");
+            trackPresent = false;
+            updateSelection.cancel();
+            currentAcid = 0;
         });
 
-        FirstRhythmDropDown.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.setInstrument(mi.rhythmGuitarTrack(), 0, FirstRhythmDropDown.getSelectedIndex());
-            }
-        });
-        SecondRhythmDropDown.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.setInstrument(mi.altRhythmGuitarTrack(), 1, SecondRhythmDropDown.getSelectedIndex());
-            }
-        });
-        FirstMelodyDropDown.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.setInstrument(mi.melodyTrack(), 2, FirstMelodyDropDown.getSelectedIndex());
-            }
-        });
-        SecondMelodyDropDown.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.setInstrument(mi.altMelodyTrack(), 3, SecondMelodyDropDown.getSelectedIndex());
-            }
-        });
-        FirstBassDropDown.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.setInstrument(mi.bassTrack(), 4, FirstBassDropDown.getSelectedIndex());
-            }
-        });
-        SecondBassDropDown.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.setInstrument(mi.altBassTrack(), 5, SecondBassDropDown.getSelectedIndex());
-            }
-        });
+        for(DropDown dd: dropDowns){
+            dd.getComboBox().addActionListener(e -> mi.setInstrument(dd.getTrack(), dd.getTrackIndex(), dd.getComboBox().getSelectedIndex()));
+        }
 
+        for(Button sb: soloButtons){
+            sb.getButton().addActionListener(e -> mi.soloTrack(sb.getTrackIndex()));
+        }
 
-        FirstMelodySoloButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.soloTrack(mi.melodyTrackIndex());
-            }
-        });
-        FirstRhythmSoloButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.soloTrack(mi.rhythmGuitarTrackIndex());
-            }
-        });
-        FirstBassSoloButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.soloTrack(mi.bassTrackIndex());
-            }
-        });
-        FirstDrumSoloButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.soloTrack(mi.drumTrackIndex());
-            }
-        });
-        SecondMelodySoloButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.soloTrack(mi.altMelodyTrackIndex());
-            }
-        });
-        SecondRhythmSoloButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.soloTrack(mi.altRhythmGuitarTrackIndex());
-            }
-        });
-        SecondBassSoloButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.soloTrack(mi.altBassTrackIndex());
-            }
-        });
-        SecondDrumSoloButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.soloTrack(mi.altDrumTrackIndex());
-            }
-        });
+        for(Button mb: muteButtons){
+            mb.getButton().addActionListener(e -> mi.muteTrack(mb.getTrackIndex()));
+        }
 
-        FirstMelodyMuteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.muteTrack(mi.melodyTrackIndex());
-            }
-        });
-        FirstRhythmMuteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.muteTrack(mi.rhythmGuitarTrackIndex());
-            }
-        });
-        FirstBassMuteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.muteTrack(mi.bassTrackIndex());
-            }
-        });
-        FirstDrumMuteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.muteTrack(mi.drumTrackIndex());
-            }
-        });
-        SecondMelodyMuteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.muteTrack(mi.altMelodyTrackIndex());
-            }
-        });
-        SecondRhythmMuteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.muteTrack(mi.altRhythmGuitarTrackIndex());
-            }
-        });
-        SecondBassMuteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.muteTrack(mi.altBassTrackIndex());
-            }
-        });
-        SecondDrumMuteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mi.muteTrack(mi.altDrumTrackIndex());
-            }
-        });
-        saveAsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                final JFileChooser fc = new JFileChooser();
-                int retVal = fc.showSaveDialog(AminoAcidPlayer.this);
-                if (retVal == JFileChooser.APPROVE_OPTION) {
-                    if (!trackPresent) {
-                        createTrack();
-                    }
-                    saveField.setText(fc.getSelectedFile().toString());
-                    mi.writeMidi(fc.getSelectedFile().toString());
-                }
-            }
-        });
-        saveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        saveAsButton.addActionListener(e -> {
+            final JFileChooser fc = new JFileChooser();
+            int retVal = fc.showSaveDialog(AminoAcidPlayer.this);
+            if (retVal == JFileChooser.APPROVE_OPTION) {
                 if (!trackPresent) {
                     createTrack();
                 }
-                mi.writeMidi(saveField.getText());
+                saveField.setText(fc.getSelectedFile().toString());
+                mi.writeMidi(fc.getSelectedFile().toString());
             }
         });
-        convertButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Runtime rt = Runtime.getRuntime();
-                try {
-                    rt.exec("timidity " + saveField.getText() + " -Ow");
-                    JOptionPane.showMessageDialog(AminoAcidPlayer.this, "Converted to wav");
-                } catch (IOException e1) {
-                    JOptionPane.showMessageDialog(AminoAcidPlayer.this, "Failed to convert", "error", JOptionPane.ERROR_MESSAGE);
-                    e1.printStackTrace();
-                }
-
+        saveButton.addActionListener(e -> {
+            if (!trackPresent) {
+                createTrack();
             }
+            mi.writeMidi(saveField.getText());
+        });
+        convertButton.addActionListener(e -> {
+            Runtime rt = Runtime.getRuntime();
+            try {
+                rt.exec("timidity " + saveField.getText() + " -Ow");
+                JOptionPane.showMessageDialog(AminoAcidPlayer.this, "Converted to wav");
+            } catch (IOException e1) {
+                JOptionPane.showMessageDialog(AminoAcidPlayer.this, "Failed to convert", "error", JOptionPane.ERROR_MESSAGE);
+                e1.printStackTrace();
+            }
+
         });
 
+    }
+
+    private static void highlightCurrentAcid(JTextField textField, int currentAcid) {
+        try{
+            textField.requestFocus();
+            textField.setSelectionStart(currentAcid);
+            textField.setSelectionEnd(currentAcid + 1);
+        }catch(IndexOutOfBoundsException ignored){}
     }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("AminoAcidPlayer");
         frame.setContentPane(new AminoAcidPlayer().aminoAcidPlayerPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
 
     private void createUIComponents() {
-        for(String instrument: mi.listInstruments()) {
-            FirstMelodyDropDown.addItem(instrument);
-            SecondMelodyDropDown.addItem(instrument);
-            FirstRhythmDropDown.addItem(instrument);
-            SecondRhythmDropDown.addItem(instrument);
-            FirstBassDropDown.addItem(instrument);
-            SecondBassDropDown.addItem(instrument);
+        for(DropDown dd: dropDowns){
+            for(String instrument: mi.listInstruments()) {
+                dd.getComboBox().addItem(instrument);
+            }
+            dd.getComboBox().setSelectedIndex(dd.getDefaultInstrument());
         }
-
-
-        FirstMelodyDropDown.setSelectedIndex(48);
-        SecondMelodyDropDown.setSelectedIndex(4);
-        FirstRhythmDropDown.setSelectedIndex(24);
-        SecondRhythmDropDown.setSelectedIndex(0);
-        FirstBassDropDown.setSelectedIndex(33);
-        SecondBassDropDown.setSelectedIndex(35);
     }
 }

@@ -18,8 +18,8 @@ object Bass2 extends BassTrait {
       )
     }
     if(!altTrack){
-      notes.map(n=>Note(mc.bassTrack,trackNumber,n._1,velocity,n._2,n._3))
+      notes.map(n=>Note(mc.bassTrack,mc.bassTrackIndex,n._1,velocity,n._2,n._3))
     } else {
-      notes.map(n=>Note(mc.altBassTrack,altTrackNumber,n._1,velocity,n._2,n._3))
+      notes.map(n=>Note(mc.altBassTrack,mc.altBassTrackIndex,n._1,velocity,n._2,n._3))
     }  }
 }

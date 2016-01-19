@@ -19,6 +19,6 @@ object Drum1 extends DrumTrait {
         (35, 120, oneAnd, eighth)
       )
     }
-    notes.map(n => Note(drumTrack, 9, n._1, n._2, n._3, n._4))
+    notes.map(n => Note(drumTrack, mc.drumTrackIndex, n._1, n._2, n._3, n._4))
   }
 }

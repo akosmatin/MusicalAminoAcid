@@ -29,6 +29,16 @@ object MusicCommon extends MusicCommon{
   private val sequence = new Sequence(Sequence.PPQ, noteDivision)
   private val sequencer = MidiSystem.getSequencer
 
+  val rhythmGuitarTrackIndex = 0
+  val altRhythmGuitarTrackIndex = 1
+  val melodyTrackIndex = 2
+  val altMelodyTrackIndex = 3
+  val bassTrackIndex = 4
+  val altBassTrackIndex = 5
+  val drumTrackIndex = 9
+  val altDrumTrackIndex = 9
+
+
   val rhythmGuitarTrack = sequence.createTrack()
   val altRhythmGuitarTrack = sequence.createTrack()
   val melodyTrack = sequence.createTrack()

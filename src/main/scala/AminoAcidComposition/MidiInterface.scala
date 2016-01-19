@@ -18,14 +18,14 @@ object MidiInterface extends MusicCommon {
 //  val betaGlobin =  "MVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH"
 //  val betaGlobin2 = "MVHLTPVEVGGEALGWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH"
 
-  val rhythmGuitarTrackIndex = 0
-  val altRhythmGuitarTrackIndex = 1
-  val melodyTrackIndex = 2
-  val altMelodyTrackIndex = 3
-  val bassTrackIndex = 4
-  val altBassTrackIndex = 5
-  val drumTrackIndex = 6
-  val altDrumTrackIndex = 7
+  val rhythmGuitarTrackIndex = mc.rhythmGuitarTrackIndex
+  val altRhythmGuitarTrackIndex = mc.altRhythmGuitarTrackIndex
+  val melodyTrackIndex = mc.melodyTrackIndex
+  val altMelodyTrackIndex = mc.altMelodyTrackIndex
+  val bassTrackIndex = mc.bassTrackIndex
+  val altBassTrackIndex = mc.altBassTrackIndex
+  val drumTrackIndex = mc.drumTrackIndex
+  val altDrumTrackIndex = mc.altDrumTrackIndex
 
   val rhythmGuitarTrack = mc.rhythmGuitarTrack
   val altRhythmGuitarTrack = mc.altRhythmGuitarTrack
