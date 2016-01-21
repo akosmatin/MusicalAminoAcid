@@ -114,11 +114,12 @@ public class AminoAcidPlayer extends JFrame {
 
         playButton.addActionListener(e -> {
             if (!trackPresent) {
+                System.out.println(pauseLocation);
                 createTrack();
                 playMidi(120);
-//                    paused = false;
+                paused = false;
                 trackPresent = true;
-//                    playButton.setText("pause");
+                playButton.setText("pause");
                 pauseLocation=0;
                 firstAminoAcid.requestFocus();
                 updateSelection = new Timer();
@@ -142,19 +143,11 @@ public class AminoAcidPlayer extends JFrame {
                         currentAcid++;
                     }
                 }, 0, 2000);
+            }else{
+                pauseLocation = stopPlayback();
+                paused = true;
+                playButton.setText("play");
             }
-//                else if(paused){
-//                    createTrack();
-//                    mi.setLocation(pauseLocation);
-//                    playMidi(120);
-//                    paused = false;
-//                    playButton.setText("pause");
-//                    pauseLocation=0;
-//                }else{
-//                    pauseLocation = stopPlayback();
-//                    paused = true;
-////                    playButton.setText("play");
-//                }
         });
 
 
@@ -211,6 +204,7 @@ public class AminoAcidPlayer extends JFrame {
 
     private void playMidi(int bpm) {
         mi.playMidi(bpm);
+        mi.setLocation(pauseLocation);
         for(CustomJSlider vs: volumeSliders){
             vs.setEnabled(true);
         }

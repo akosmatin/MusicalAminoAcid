@@ -96,7 +96,6 @@ object MusicCommon extends MusicCommon{
     sequencer.open()
     sequencer.setSequence(sequence)
     sequencer.setTempoInBPM(bpm)
-//    sequencer.setTrackMute(9, false)
     sequencer.start()
   }
 
