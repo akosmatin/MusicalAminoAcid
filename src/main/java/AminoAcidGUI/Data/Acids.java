@@ -1,4 +1,4 @@
-package AminoAcidGUI;
+package AminoAcidGUI.Data;
 
 import java.util.LinkedHashMap;
 

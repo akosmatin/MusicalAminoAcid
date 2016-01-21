@@ -26,6 +26,10 @@ trait MusicCommon {
 }
 
 object MusicCommon extends MusicCommon{
+  def changeVolume(track:Track, trackIndex:Int, volume:Int) = {
+    addMidiEvent(track, ShortMessage.CONTROL_CHANGE, trackIndex, 7, volume, sequencer.getTickPosition)
+  }
+
   private val sequence = new Sequence(Sequence.PPQ, noteDivision)
   private val sequencer = MidiSystem.getSequencer
 
@@ -35,8 +39,8 @@ object MusicCommon extends MusicCommon{
   val altMelodyTrackIndex = 3
   val bassTrackIndex = 4
   val altBassTrackIndex = 5
-  val drumTrackIndex = 9
-  val altDrumTrackIndex = 9
+  val drumTrackIndex = 6
+  val altDrumTrackIndex = 7
 
 
   val rhythmGuitarTrack = sequence.createTrack()

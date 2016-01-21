@@ -150,7 +150,7 @@
               </component>
             </children>
           </grid>
-          <grid id="a68a3" binding="InstrumentControlPanel" layout-manager="GridLayoutManager" row-count="5" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="a68a3" binding="InstrumentControlPanel" layout-manager="GridLayoutManager" row-count="9" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -186,19 +186,21 @@
                   <text value="Melody: "/>
                 </properties>
               </component>
-              <component id="d830d" class="javax.swing.JToggleButton" binding="FirstMelodyMuteButton">
+              <component id="e56bb" class="AminoAcidGUI.GUIElements.GroupedToggleButton" binding="FirstMelodyMuteButton" custom-create="true">
                 <constraints>
                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <enabled value="false"/>
                   <text value="Mute"/>
                 </properties>
               </component>
-              <component id="97d5f" class="javax.swing.JToggleButton" binding="FirstMelodySoloButton">
+              <component id="db4ab" class="AminoAcidGUI.GUIElements.GroupedToggleButton" binding="FirstMelodySoloButton" custom-create="true">
                 <constraints>
                   <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <enabled value="false"/>
                   <text value="Solo"/>
                 </properties>
               </component>
@@ -210,19 +212,21 @@
                   <model/>
                 </properties>
               </component>
-              <component id="24c29" class="javax.swing.JToggleButton" binding="SecondMelodyMuteButton">
+              <component id="58c30" class="AminoAcidGUI.GUIElements.GroupedToggleButton" binding="SecondMelodyMuteButton" custom-create="true">
                 <constraints>
                   <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <enabled value="false"/>
                   <text value="Mute"/>
                 </properties>
               </component>
-              <component id="a0358" class="javax.swing.JToggleButton" binding="SecondMelodySoloButton">
+              <component id="69706" class="AminoAcidGUI.GUIElements.GroupedToggleButton" binding="SecondMelodySoloButton" custom-create="true">
                 <constraints>
                   <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <enabled value="false"/>
                   <text value="Solo"/>
                 </properties>
               </component>
@@ -236,85 +240,31 @@
               </component>
               <component id="7de2e" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Rhythm Guitar: "/>
                 </properties>
               </component>
-              <component id="5fc65" class="javax.swing.JToggleButton" binding="FirstRhythmMuteButton">
-                <constraints>
-                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Mute"/>
-                </properties>
-              </component>
-              <component id="95e9e" class="javax.swing.JToggleButton" binding="FirstRhythmSoloButton">
-                <constraints>
-                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Solo"/>
-                </properties>
-              </component>
-              <component id="ea9eb" class="javax.swing.JComboBox" binding="FirstRhythmDropDown">
-                <constraints>
-                  <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <model/>
-                </properties>
-              </component>
-              <component id="23cb0" class="javax.swing.JToggleButton" binding="SecondRhythmMuteButton">
-                <constraints>
-                  <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Mute"/>
-                </properties>
-              </component>
-              <component id="c13bd" class="javax.swing.JToggleButton" binding="SecondRhythmSoloButton">
-                <constraints>
-                  <grid row="2" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Solo"/>
-                </properties>
-              </component>
-              <component id="a5c37" class="javax.swing.JComboBox" binding="SecondRhythmDropDown">
-                <constraints>
-                  <grid row="2" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <model/>
-                </properties>
-              </component>
-              <component id="b019d" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Bass Guitar: "/>
-                </properties>
-              </component>
-              <component id="5f72" class="javax.swing.JToggleButton" binding="FirstBassMuteButton">
+              <component id="6f22f" class="AminoAcidGUI.GUIElements.GroupedToggleButton" binding="FirstRhythmMuteButton" custom-create="true">
                 <constraints>
                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <enabled value="false"/>
                   <text value="Mute"/>
                 </properties>
               </component>
-              <component id="30ffe" class="javax.swing.JToggleButton" binding="FirstBassSoloButton">
+              <component id="7a6ba" class="AminoAcidGUI.GUIElements.GroupedToggleButton" binding="FirstRhythmSoloButton" custom-create="true">
                 <constraints>
                   <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <enabled value="false"/>
                   <text value="Solo"/>
                 </properties>
               </component>
-              <component id="9801c" class="javax.swing.JComboBox" binding="FirstBassDropDown">
+              <component id="ea9eb" class="javax.swing.JComboBox" binding="FirstRhythmDropDown">
                 <constraints>
                   <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -322,23 +272,25 @@
                   <model/>
                 </properties>
               </component>
-              <component id="a2fbc" class="javax.swing.JToggleButton" binding="SecondBassMuteButton">
+              <component id="8b9e8" class="AminoAcidGUI.GUIElements.GroupedToggleButton" binding="SecondRhythmMuteButton" custom-create="true">
                 <constraints>
                   <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <enabled value="false"/>
                   <text value="Mute"/>
                 </properties>
               </component>
-              <component id="8c606" class="javax.swing.JToggleButton" binding="SecondBassSoloButton">
+              <component id="73c61" class="AminoAcidGUI.GUIElements.GroupedToggleButton" binding="SecondRhythmSoloButton" custom-create="true">
                 <constraints>
                   <grid row="3" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <enabled value="false"/>
                   <text value="Solo"/>
                 </properties>
               </component>
-              <component id="e25ff" class="javax.swing.JComboBox" binding="SecondBassDropDown">
+              <component id="a5c37" class="javax.swing.JComboBox" binding="SecondRhythmDropDown">
                 <constraints>
                   <grid row="3" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -346,54 +298,214 @@
                   <model/>
                 </properties>
               </component>
+              <component id="b019d" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Bass Guitar: "/>
+                </properties>
+              </component>
+              <component id="d8ff7" class="AminoAcidGUI.GUIElements.GroupedToggleButton" binding="FirstBassMuteButton" custom-create="true">
+                <constraints>
+                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                  <text value="Mute"/>
+                </properties>
+              </component>
+              <component id="9d1eb" class="AminoAcidGUI.GUIElements.GroupedToggleButton" binding="FirstBassSoloButton" custom-create="true">
+                <constraints>
+                  <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                  <text value="Solo"/>
+                </properties>
+              </component>
+              <component id="9801c" class="javax.swing.JComboBox" binding="FirstBassDropDown">
+                <constraints>
+                  <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model/>
+                </properties>
+              </component>
+              <component id="4fbe4" class="AminoAcidGUI.GUIElements.GroupedToggleButton" binding="SecondBassMuteButton" custom-create="true">
+                <constraints>
+                  <grid row="5" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                  <text value="Mute"/>
+                </properties>
+              </component>
+              <component id="bfd20" class="AminoAcidGUI.GUIElements.GroupedToggleButton" binding="SecondBassSoloButton" custom-create="true">
+                <constraints>
+                  <grid row="5" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                  <text value="Solo"/>
+                </properties>
+              </component>
+              <component id="e25ff" class="javax.swing.JComboBox" binding="SecondBassDropDown">
+                <constraints>
+                  <grid row="5" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model/>
+                </properties>
+              </component>
               <component id="8534e" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Drum: "/>
                 </properties>
               </component>
-              <component id="52c2e" class="javax.swing.JToggleButton" binding="FirstDrumMuteButton">
+              <component id="368da" class="AminoAcidGUI.GUIElements.GroupedToggleButton" binding="FirstDrumMuteButton" custom-create="true">
                 <constraints>
-                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <enabled value="false"/>
                   <text value="Mute"/>
                 </properties>
               </component>
-              <component id="7dcd6" class="javax.swing.JToggleButton" binding="FirstDrumSoloButton">
+              <component id="a7c0" class="AminoAcidGUI.GUIElements.GroupedToggleButton" binding="FirstDrumSoloButton" custom-create="true">
                 <constraints>
-                  <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <enabled value="false"/>
                   <text value="Solo"/>
                 </properties>
               </component>
-              <component id="358a" class="javax.swing.JToggleButton" binding="SecondDrumMuteButton">
+              <component id="699a0" class="AminoAcidGUI.GUIElements.GroupedToggleButton" binding="SecondDrumMuteButton" custom-create="true">
                 <constraints>
-                  <grid row="4" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="7" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <enabled value="false"/>
                   <text value="Mute"/>
                 </properties>
               </component>
-              <component id="7b1fe" class="javax.swing.JToggleButton" binding="SecondDrumSoloButton">
+              <component id="ba4a6" class="AminoAcidGUI.GUIElements.GroupedToggleButton" binding="SecondDrumSoloButton" custom-create="true">
                 <constraints>
-                  <grid row="4" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="7" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <enabled value="false"/>
                   <text value="Solo"/>
                 </properties>
               </component>
               <hspacer id="c8cdd">
                 <constraints>
-                  <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                  <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
                     <minimum-size width="5" height="5"/>
                     <preferred-size width="5" height="5"/>
                   </grid>
                 </constraints>
               </hspacer>
+              <component id="b1568" class="AminoAcidGUI.GUIElements.GroupedJSlider" binding="firstMelodySlider" custom-create="true">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                  <majorTickSpacing value="10"/>
+                  <maximum value="127"/>
+                  <minorTickSpacing value="1"/>
+                  <value value="100"/>
+                </properties>
+              </component>
+              <component id="ddcb5" class="AminoAcidGUI.GUIElements.GroupedJSlider" binding="secondMelodySlider" custom-create="true">
+                <constraints>
+                  <grid row="2" column="5" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                  <majorTickSpacing value="10"/>
+                  <maximum value="127"/>
+                  <minorTickSpacing value="1"/>
+                  <value value="100"/>
+                </properties>
+              </component>
+              <component id="a222c" class="AminoAcidGUI.GUIElements.GroupedJSlider" binding="firstRhythmSlider" custom-create="true">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                  <majorTickSpacing value="10"/>
+                  <maximum value="127"/>
+                  <minorTickSpacing value="1"/>
+                  <value value="100"/>
+                </properties>
+              </component>
+              <component id="5b0a5" class="AminoAcidGUI.GUIElements.GroupedJSlider" binding="secondRhythmSlider" custom-create="true">
+                <constraints>
+                  <grid row="4" column="5" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                  <majorTickSpacing value="10"/>
+                  <maximum value="127"/>
+                  <minorTickSpacing value="1"/>
+                  <value value="100"/>
+                </properties>
+              </component>
+              <component id="c4b2" class="AminoAcidGUI.GUIElements.GroupedJSlider" binding="firstBassSlider" custom-create="true">
+                <constraints>
+                  <grid row="6" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                  <majorTickSpacing value="10"/>
+                  <maximum value="127"/>
+                  <minorTickSpacing value="1"/>
+                  <value value="100"/>
+                </properties>
+              </component>
+              <component id="db4db" class="AminoAcidGUI.GUIElements.GroupedJSlider" binding="secondBassSlider" custom-create="true">
+                <constraints>
+                  <grid row="6" column="5" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                  <majorTickSpacing value="10"/>
+                  <maximum value="127"/>
+                  <minorTickSpacing value="1"/>
+                  <value value="100"/>
+                </properties>
+              </component>
+              <component id="45d97" class="AminoAcidGUI.GUIElements.GroupedJSlider" binding="firstDrumSlider" custom-create="true">
+                <constraints>
+                  <grid row="8" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                  <majorTickSpacing value="10"/>
+                  <maximum value="127"/>
+                  <minorTickSpacing value="1"/>
+                  <value value="100"/>
+                </properties>
+              </component>
+              <component id="dacae" class="AminoAcidGUI.GUIElements.GroupedJSlider" binding="secondDrumSlider" custom-create="true">
+                <constraints>
+                  <grid row="8" column="5" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                  <majorTickSpacing value="10"/>
+                  <maximum value="127"/>
+                  <minorTickSpacing value="1"/>
+                  <value value="100"/>
+                </properties>
+              </component>
             </children>
           </grid>
         </children>

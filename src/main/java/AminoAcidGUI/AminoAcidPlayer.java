@@ -1,13 +1,18 @@
 package AminoAcidGUI;
 
-import javax.sound.midi.Track;
 import javax.swing.*;
 import java.io.IOException;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import AminoAcidComposition.MidiInterface$;
+import AminoAcidGUI.Data.Acids;
+import AminoAcidGUI.GUIElements.CustomJSlider;
+import AminoAcidGUI.GUIElements.CustomJToggleButton;
+import AminoAcidGUI.GUIElements.GroupedJSlider;
+import AminoAcidGUI.GUIElements.GroupedToggleButton;
 
 public class AminoAcidPlayer extends JFrame {
     private MidiInterface$ mi = MidiInterface$.MODULE$;
@@ -21,29 +26,29 @@ public class AminoAcidPlayer extends JFrame {
     private JTextField secondAminoAcid;
     private JButton playButton;
     private JButton stopButton;
-    private JToggleButton FirstMelodyMuteButton;
-    private JToggleButton FirstMelodySoloButton;
-    private JToggleButton FirstRhythmMuteButton;
-    private JToggleButton FirstRhythmSoloButton;
-    private JToggleButton FirstBassMuteButton;
-    private JToggleButton FirstBassSoloButton;
-    private JToggleButton FirstDrumMuteButton;
-    private JToggleButton FirstDrumSoloButton;
-    private JToggleButton SecondMelodyMuteButton;
-    private JToggleButton SecondMelodySoloButton;
-    private JToggleButton SecondRhythmMuteButton;
-    private JToggleButton SecondRhythmSoloButton;
-    private JToggleButton SecondBassMuteButton;
-    private JToggleButton SecondBassSoloButton;
-    private JToggleButton SecondDrumMuteButton;
-    private JToggleButton SecondDrumSoloButton;
+    private GroupedToggleButton FirstMelodyMuteButton;
+    private GroupedToggleButton FirstMelodySoloButton;
+    private GroupedToggleButton FirstRhythmMuteButton;
+    private GroupedToggleButton FirstRhythmSoloButton;
+    private GroupedToggleButton FirstBassMuteButton;
+    private GroupedToggleButton FirstBassSoloButton;
+    private GroupedToggleButton FirstDrumMuteButton;
+    private GroupedToggleButton FirstDrumSoloButton;
+    private GroupedToggleButton SecondMelodyMuteButton;
+    private GroupedToggleButton SecondMelodySoloButton;
+    private GroupedToggleButton SecondRhythmMuteButton;
+    private GroupedToggleButton SecondRhythmSoloButton;
+    private GroupedToggleButton SecondBassMuteButton;
+    private GroupedToggleButton SecondBassSoloButton;
+    private GroupedToggleButton SecondDrumMuteButton;
+    private GroupedToggleButton SecondDrumSoloButton;
     private JComboBox<String> FirstMelodyDropDown;
     private JComboBox<String> FirstRhythmDropDown;
     private JComboBox<String> FirstBassDropDown;
     private JComboBox<String> SecondMelodyDropDown;
     private JComboBox<String> SecondRhythmDropDown;
     private JComboBox<String> SecondBassDropDown;
-    private JPanel aminoAcidPlayerPanel;
+    protected JPanel aminoAcidPlayerPanel;
     private JTextField saveField;
     private JButton saveButton;
     private JButton saveAsButton;
@@ -55,10 +60,19 @@ public class AminoAcidPlayer extends JFrame {
     private JPanel SaveControlPanel;
     private JPanel InstrumentControlPanel;
     private JPanel TrackControlPanel;
+    private GroupedJSlider firstMelodySlider;
+    private GroupedJSlider secondMelodySlider;
+    private GroupedJSlider firstRhythmSlider;
+    private GroupedJSlider secondRhythmSlider;
+    private GroupedJSlider firstBassSlider;
+    private GroupedJSlider secondBassSlider;
+    private GroupedJSlider firstDrumSlider;
+    private GroupedJSlider secondDrumSlider;
 
 
     private LinkedHashMap<String, String> acids = Acids.getInstance().getAcids();
     private DropDown[] dropDowns = new DropDown[6];
+    private LinkedList<CustomJSlider> volumeSliders = GroupedJSlider.getAllGroupedSliders();
 
     private void createTrack() {
         mi.stopMidi();
@@ -76,30 +90,12 @@ public class AminoAcidPlayer extends JFrame {
         dropDowns[4] = new DropDown(mi.altMelodyTrack(), mi.altMelodyTrackIndex(), SecondMelodyDropDown, 4);
         dropDowns[5] = new DropDown(mi.altBassTrack(), mi.altBassTrackIndex(), SecondBassDropDown, 35);
 
-
-        Button[] soloButtons = {
-                new Button(mi.melodyTrackIndex(), FirstMelodySoloButton),
-                new Button(mi.rhythmGuitarTrackIndex(), FirstRhythmSoloButton),
-                new Button(mi.bassTrackIndex(), FirstBassSoloButton),
-                new Button(mi.drumTrackIndex(), FirstDrumSoloButton),
-                new Button(mi.altMelodyTrackIndex(), SecondMelodySoloButton),
-                new Button(mi.altRhythmGuitarTrackIndex(), SecondRhythmSoloButton),
-                new Button(mi.altBassTrackIndex(), SecondBassSoloButton),
-                new Button(mi.altDrumTrackIndex(), SecondDrumSoloButton)
-        };
-
-        Button[] muteButtons = {
-                new Button(mi.melodyTrackIndex(), FirstMelodyMuteButton),
-                new Button(mi.rhythmGuitarTrackIndex(), FirstRhythmMuteButton),
-                new Button(mi.bassTrackIndex(), FirstBassMuteButton),
-                new Button(mi.drumTrackIndex(), FirstDrumMuteButton),
-                new Button(mi.altMelodyTrackIndex(), SecondMelodyMuteButton),
-                new Button(mi.altRhythmGuitarTrackIndex(), SecondRhythmMuteButton),
-                new Button(mi.altBassTrackIndex(), SecondBassMuteButton),
-                new Button(mi.altDrumTrackIndex(), SecondDrumMuteButton)
-        };
-
-        createUIComponents();
+        for(DropDown dd: dropDowns){
+            for(String instrument: mi.listInstruments()) {
+                dd.getComboBox().addItem(instrument);
+            }
+            dd.getComboBox().setSelectedIndex(dd.getDefaultInstrument());
+        }
 
         for(String acid: acids.keySet()){
             FirstAminoAcidDropDown.addItem(acid);
@@ -118,9 +114,8 @@ public class AminoAcidPlayer extends JFrame {
 
         playButton.addActionListener(e -> {
             if (!trackPresent) {
-
                 createTrack();
-                mi.playMidi(120);
+                playMidi(120);
 //                    paused = false;
                 trackPresent = true;
 //                    playButton.setText("pause");
@@ -132,7 +127,7 @@ public class AminoAcidPlayer extends JFrame {
                     public void run() {
                         if (currentAcid>=firstAminoAcid.getText().length() &&
                                 currentAcid>=secondAminoAcid.getText().length()){
-                            updateSelection.cancel();
+                            stopPlayback();
                             currentAcid=-1;
                         }
                         firstAminoAcid.setScrollOffset((currentAcid-32)*8);
@@ -151,12 +146,12 @@ public class AminoAcidPlayer extends JFrame {
 //                else if(paused){
 //                    createTrack();
 //                    mi.setLocation(pauseLocation);
-//                    mi.playMidi(120);
+//                    playMidi(120);
 //                    paused = false;
 //                    playButton.setText("pause");
 //                    pauseLocation=0;
 //                }else{
-//                    pauseLocation = mi.stopMidi();
+//                    pauseLocation = stopPlayback();
 //                    paused = true;
 ////                    playButton.setText("play");
 //                }
@@ -164,11 +159,7 @@ public class AminoAcidPlayer extends JFrame {
 
 
         stopButton.addActionListener(e -> {
-            mi.stopMidi();
-            paused = false;
-            playButton.setText("play");
-            trackPresent = false;
-            updateSelection.cancel();
+            stopPlayback();
             currentAcid = 0;
         });
 
@@ -176,12 +167,16 @@ public class AminoAcidPlayer extends JFrame {
             dd.getComboBox().addActionListener(e -> mi.setInstrument(dd.getTrack(), dd.getTrackIndex(), dd.getComboBox().getSelectedIndex()));
         }
 
-        for(Button sb: soloButtons){
-            sb.getButton().addActionListener(e -> mi.soloTrack(sb.getTrackIndex()));
+        for(CustomJToggleButton sb: GroupedToggleButton.getGroupedByType("Solo")){
+            sb.addActionListener(e -> mi.soloTrack(sb.getTrackIndex()));
         }
 
-        for(Button mb: muteButtons){
-            mb.getButton().addActionListener(e -> mi.muteTrack(mb.getTrackIndex()));
+        for(CustomJToggleButton mb: GroupedToggleButton.getGroupedByType("Mute")){
+            mb.addActionListener(e -> mi.muteTrack(mb.getTrackIndex()));
+        }
+
+        for(CustomJSlider vs: volumeSliders){
+            vs.addChangeListener(e -> mi.changeVolume(vs.getTrack(), vs.getTrackIndex(), vs.getValue()));
         }
 
         saveAsButton.addActionListener(e -> {
@@ -212,7 +207,40 @@ public class AminoAcidPlayer extends JFrame {
             }
 
         });
+    }
 
+    private void playMidi(int bpm) {
+        mi.playMidi(bpm);
+        for(CustomJSlider vs: volumeSliders){
+            vs.setEnabled(true);
+        }
+        for(CustomJToggleButton tb: GroupedToggleButton.getAllGroupedButtons()){
+            tb.setEnabled(true);
+        }
+    }
+
+    private long stopPlayback(){
+        long currentTick;
+        try{
+            currentTick = mi.stopMidi();
+        }catch (NullPointerException e){
+            currentTick = 0;
+        }
+        paused = false;
+        playButton.setText("play");
+        trackPresent = false;
+        try{
+            updateSelection.cancel();
+        }catch (NullPointerException ignored){}
+        for(CustomJSlider vs: volumeSliders){
+            vs.setValue(100);
+            vs.setEnabled(false);
+        }
+        for(CustomJToggleButton tb: GroupedToggleButton.getAllGroupedButtons()){
+            tb.setSelected(false);
+            tb.setEnabled(false);
+        }
+        return currentTick;
     }
 
     private static void highlightCurrentAcid(JTextField textField, int currentAcid) {
@@ -223,20 +251,32 @@ public class AminoAcidPlayer extends JFrame {
         }catch(IndexOutOfBoundsException ignored){}
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("AminoAcidPlayer");
-        frame.setContentPane(new AminoAcidPlayer().aminoAcidPlayerPanel);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
-
     private void createUIComponents() {
-        for(DropDown dd: dropDowns){
-            for(String instrument: mi.listInstruments()) {
-                dd.getComboBox().addItem(instrument);
-            }
-            dd.getComboBox().setSelectedIndex(dd.getDefaultInstrument());
-        }
+        FirstMelodyMuteButton = new GroupedToggleButton("Mute", mi.melodyTrackIndex());
+        FirstRhythmMuteButton = new GroupedToggleButton("Mute", mi.rhythmGuitarTrackIndex());
+        FirstBassMuteButton = new GroupedToggleButton("Mute", mi.bassTrackIndex());
+        FirstDrumMuteButton = new GroupedToggleButton("Mute", mi.drumTrackIndex());
+        SecondMelodyMuteButton = new GroupedToggleButton("Mute", mi.altMelodyTrackIndex());
+        SecondRhythmMuteButton = new GroupedToggleButton("Mute", mi.altRhythmGuitarTrackIndex());
+        SecondBassMuteButton = new GroupedToggleButton("Mute", mi.altBassTrackIndex());
+        SecondDrumMuteButton = new GroupedToggleButton("Mute", mi.altDrumTrackIndex());
+
+        FirstMelodySoloButton = new GroupedToggleButton("Solo", mi.melodyTrackIndex());
+        FirstRhythmSoloButton = new GroupedToggleButton("Solo", mi.rhythmGuitarTrackIndex());
+        FirstBassSoloButton = new GroupedToggleButton("Solo", mi.bassTrackIndex());
+        FirstDrumSoloButton = new GroupedToggleButton("Solo", mi.drumTrackIndex());
+        SecondMelodySoloButton = new GroupedToggleButton("Solo", mi.altMelodyTrackIndex());
+        SecondRhythmSoloButton = new GroupedToggleButton("Solo", mi.altRhythmGuitarTrackIndex());
+        SecondBassSoloButton = new GroupedToggleButton("Solo", mi.altBassTrackIndex());
+        SecondDrumSoloButton = new GroupedToggleButton("Solo", mi.altDrumTrackIndex());
+
+        firstMelodySlider = new GroupedJSlider(mi.melodyTrack(), mi.melodyTrackIndex());
+        secondMelodySlider = new GroupedJSlider(mi.altMelodyTrack(),mi.altBassTrackIndex());
+        firstRhythmSlider = new GroupedJSlider(mi.rhythmGuitarTrack(),mi.rhythmGuitarTrackIndex());
+        secondRhythmSlider = new GroupedJSlider(mi.altRhythmGuitarTrack(),mi.altRhythmGuitarTrackIndex());
+        firstBassSlider = new GroupedJSlider(mi.bassTrack(),mi.bassTrackIndex());
+        secondBassSlider = new GroupedJSlider(mi.altBassTrack(),mi.altBassTrackIndex());
+        firstDrumSlider = new GroupedJSlider(mi.drumTrack(),mi.drumTrackIndex());
+        secondDrumSlider = new GroupedJSlider(mi.altDrumTrack(),mi.altDrumTrackIndex());
     }
 }

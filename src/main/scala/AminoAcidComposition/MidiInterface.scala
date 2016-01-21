@@ -2,8 +2,7 @@ package AminoAcidComposition
 
 /**
  * Created by Aaron Kosmatin on 7/12/15.
- * This is the initial main that creates a midi track and converts a sequence of Amino Acids
- * into that track
+ * The main interface for midi generation
  */
 
 import javax.sound.midi.Track
@@ -12,12 +11,6 @@ import AminoAcidComposition.AminoAcid.AminoAcidAbstract
 import AminoAcidComposition.SongStructure.MusicCommon
 
 object MidiInterface extends MusicCommon {
-//  val testSeq = "YWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYW"
-
-//  val thyA = "MKQYLELMQKVLDEGTQKNDRTGTGTLSIFGHQMRFNLQDGFPLVTTKRCHLRSIIHELLWFLQGDTNIAYLHENNVTIWDEWADENGDLGPVYGKQWRAWPTPDGRHIDQITTVLNQLKNDPDSRRIIVSAWNVGELDKMALAPCHAFFQFYVADGKLSCQLYQRSCDVFLGLPFNIASYALLVHMMAQQCDLEVGDFVWTGGDTHLYSNHMDQTHLQLSREPRPLPKLIIKRKPESIFDYRFEDFEIEGYDPHPGIKAPVAI"
-//  val betaGlobin =  "MVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH"
-//  val betaGlobin2 = "MVHLTPVEVGGEALGWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH"
-
   val rhythmGuitarTrackIndex = mc.rhythmGuitarTrackIndex
   val altRhythmGuitarTrackIndex = mc.altRhythmGuitarTrackIndex
   val melodyTrackIndex = mc.melodyTrackIndex
@@ -36,6 +29,11 @@ object MidiInterface extends MusicCommon {
   val drumTrack = mc.drumTrack
   val altDrumTrack = mc.altDrumTrack
 
+  /**
+   * Generates the midi sequence for playing or saving.
+   * @param sequence1 String of amino acids for the primary music part
+   * @param sequence2 String of amino acids for the secondaty music part
+   */
   def createMidi(sequence1:String, sequence2:String) = {
     if (!sequence1.isEmpty) {
       _createMidi(sequence1)
@@ -57,35 +55,64 @@ object MidiInterface extends MusicCommon {
     }
   }
 
-  def playMidi(bpm:Int = 120) = {
-    mc.playMidi(bpm)
-  }
+  /**
+   * Plays the midi tracks
+   * @param bpm Beats per minute, default is 120
+   */
+  def playMidi(bpm:Int = 120) = mc.playMidi(bpm)
 
-  def setLocation(location:Long) = {
-    mc.setLocation(location)
-  }
+  /**
+   * Skip to a location in the midi track
+   * @param location the tick number
+   */
+  def setLocation(location:Long) = mc.setLocation(location)
 
-  def stopMidi() = {
-    mc.stopMidi()
-  }
 
-  def listInstruments() = {
-    mc.listInstruments()
-  }
+  /**
+   * stops and clears the midi tracks
+   * @return the tick where playback was stopped
+   */
+  def stopMidi() = mc.stopMidi()
 
-  def setInstrument(track:Track, trackNumber:Int, instrument:Int) = {
-    mc.changeInstrument(track, trackNumber, instrument)
-  }
 
-  def muteTrack(trackIndex:Int) = {
-    mc.muteTrack(trackIndex)
-  }
+  /**
+   * Returns the list of supported midi instruments
+   * @return the list of supported midi instruments
+   */
+  def listInstruments() = mc.listInstruments()
 
-  def soloTrack(trackIndex:Int) = {
-    mc.soloTrack(trackIndex)
-  }
 
+  /**
+   * Change the instrument in a track before playback
+   * @param track
+   * @param trackNumber
+   * @param instrument
+   * @return
+   */
+  def setInstrument(track:Track, trackNumber:Int, instrument:Int) = mc.changeInstrument(track, trackNumber, instrument)
+
+
+  /**
+   * Mute track
+   * @param trackIndex
+   */
+  def muteTrack(trackIndex:Int) = mc.muteTrack(trackIndex)
+
+  /**
+   * 
+   * @param trackIndex
+   */
+  def soloTrack(trackIndex:Int) = mc.soloTrack(trackIndex)
+
+
+  /**
+   * 
+   * @param filename
+   * @return
+   */
   def writeMidi(filename:String) = {
     mc.writeMidi(filename)
   }
+
+  def changeVolume(track:Track, trackIndex:Int, volume:Int) = mc.changeVolume(track, trackIndex, volume)
 }
