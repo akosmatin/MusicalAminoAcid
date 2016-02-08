@@ -5,10 +5,10 @@ object RhythmGuitar2 extends RhythmGuitarTrait {
   def getTrack(rootNote:Int, altTrack:Boolean = false, firstChord:Boolean = true) = {
     if (!altTrack) {
       val chord = rootNote match {
-        case 45 => aMinor
-        case 48 => cMajor
-        case 41 => fMajor
-        case 43 => gMajor
+        case 45 => aMinorGuitar
+        case 48 => cMajorGuitar
+        case 41 => fMajorGuitar
+        case 43 => gMajorGuitar
       }
 
       def downStroke = downStrokeCurry(chord) _
@@ -25,8 +25,10 @@ object RhythmGuitar2 extends RhythmGuitarTrait {
       }
     } else {
       val chord = rootNote match {
-        case 45 => Seq(rootNote, rootNote + 3, rootNote + 7)
-        case _ => Seq(rootNote, rootNote + 4, rootNote + 7)
+        case 45 => aMinorPiano
+        case 48 => cMajorPiano
+        case 41 => fMajorPiano
+        case 43 => gMajorPiano
       }
 
       val notes = if (firstChord) {

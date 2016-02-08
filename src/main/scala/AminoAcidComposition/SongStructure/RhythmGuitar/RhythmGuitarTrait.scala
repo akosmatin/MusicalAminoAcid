@@ -8,10 +8,15 @@ trait RhythmGuitarTrait extends Instrument with MusicCommon {
   protected val velocity = 70
   protected val altVelocity = 70
 
-  protected val aMinor = Seq(45, 52, 57, 60, 64)
-  protected val cMajor = Seq(48, 52, 55, 60, 64)
-  protected val fMajor = Seq(41, 48, 53, 57, 60, 65)
-  protected val gMajor = Seq(43, 47, 50, 55, 62, 67)
+  protected val aMinorGuitar = Seq(45, 52, 57, 60, 64)
+  protected val cMajorGuitar = Seq(48, 52, 55, 60, 64)
+  protected val fMajorGuitar = Seq(41, 48, 53, 57, 60, 65)
+  protected val gMajorGuitar = Seq(43, 47, 50, 55, 62, 67)
+
+  protected val aMinorPiano = Seq(48, 52, 57, 60, 64, 69)
+  protected val cMajorPiano = Seq(48, 52, 55, 60, 64, 67)
+  protected val fMajorPiano = Seq(48, 53, 57, 60, 65, 69)
+  protected val gMajorPiano = Seq(50, 55, 59, 62, 67, 71)
 
   protected def downStrokeCurry(chord: Seq[Int])(start: Int, duration: Int, velocity: Int) = {
     for (i <- chord.indices) yield {
